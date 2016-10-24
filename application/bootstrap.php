@@ -135,22 +135,13 @@ Route::set('page', 'page/<slug>',[
 	])
 ;
 
-Route::set('catalogs', 'catalogs',[
+Route::set('contact', 'contact',[
         'controller' => 'index',
-        'action'     => 'catalogs',
+        'action'     => 'contact',
     ])
 	->defaults(array(
 		'controller' => 'index',
-		'action'     => 'catalogs',
-	));
-
-Route::set('cart', 'cart',[
-        'controller' => 'index',
-        'action'     => 'cart',
-    ])
-	->defaults(array(
-		'controller' => 'index',
-		'action'     => 'cart',
+		'action'     => 'contact',
 	));
 
 Route::set('reviews', 'reviews',[

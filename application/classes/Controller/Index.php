@@ -14,27 +14,11 @@ class Controller_Index extends Controller_Base
         View::set_global('rootPage', 'main');
 
 		$template = $contentModel->getBaseTemplate();
-        
-        $page = Arr::get($_GET, 'page', 1);
 
-        $notices = $noticeModel->getNotice();
-
-		$this->response->body($template);
-	}
-
-	public function action_catalogs()
-	{
-        /** @var $adminModel Model_Admin */
-        $adminModel = Model::factory('Admin');
-
-        View::set_global('title', 'Каталог');
-
-        $template=View::factory("template");
-
-		$template->content = View::factory("catalogs")
-            ->set('catalogsData', $adminModel->getCatalogsData())
-			->set('get', $_GET)
-			->set('post', $_POST);
+        $template->content = View::factory('index')
+            ->set('get', $_GET)
+            ->set('post', $_POST)
+        ;
 
 		$this->response->body($template);
 	}
@@ -45,36 +29,33 @@ class Controller_Index extends Controller_Base
         $contentModel = Model::factory('Content');
 
         $slug = $this->request->param('slug');
-        
-        View::set_global('title', 'Главная');
+        $pageData = $contentModel->findPageBySlug($slug);
+
+        View::set_global('title', Arr::get($pageData, 'title'));
         View::set_global('rootPage', $slug);
 
         $template = $contentModel->getBaseTemplate();
         
 		$template->content = View::factory('page')
-			->set('pageData', $contentModel->findPageBySlug($slug))
+			->set('pageData', $pageData)
 			->set('get', $_GET)
         ;
         
 		$this->response->body($template);
 	}
 
-	public function action_cart()
+	public function action_contact()
 	{
         /** @var $contentModel Model_Content */
         $contentModel = Model::factory('Content');
 
-        /** @var $cartModel Model_Cart */
-        $cartModel = Model::factory('Cart');
-
-        View::set_global('title', 'Корзина');
-        View::set_global('rootPage', 'cart');
+        View::set_global('title', 'Контакты');
+        View::set_global('rootPage', 'contact');
 
         $template = $contentModel->getBaseTemplate();
 
-		$template->content = View::factory('cart')
+		$template->content = View::factory('contact')
 			->set('get', $_GET)
-			->set('cart', $cartModel->getCart())
         ;
 
         $this->response->body($template);

@@ -137,3 +137,7 @@ h2{font-size: 25px;}
 .footer .col-sm-3{margin-bottom: 30px;}
 .agents img{ margin-bottom: 20px;}
 }
+
+.row.contact p {
+    margin: 0;
+}
