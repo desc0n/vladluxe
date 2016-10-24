@@ -78,7 +78,7 @@
               <a href="/">Главная</a>
           </li>
           <li>
-              <a href="/about">О нас</a>
+              <a href="/page/about">О нас</a>
           </li>
           <li>
               <a href="/contact">Контакты</a>
