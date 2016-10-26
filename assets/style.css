@@ -59,7 +59,7 @@ table{background-color: #fff;}
 .properties-listing div.properties p{margin-bottom: 10px; font-size: 14px;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px 0;font-family: 'Century Gothic', sans-serif;}
 
 .listing-detail{margin-bottom: 30px;}
-.listing-detail span{color: #fff; width: 25px; height: 25px; background-color: #555;display: inline-block;border-radius:25px; text-align: center;line-height: 26px; font-size: 14px;cursor: crosshair;}
+.listing-detail span{color: #fff; width: 25px; height: 25px; background-color: #555;display: inline-block;border-radius:25px; text-align: center;line-height: 26px; font-size: 14px;cursor: default;}
 .listing-detail span:hover{background: #72b70f;}
 
 
@@ -140,4 +140,33 @@ h2{font-size: 25px;}
 
 .row.contact p {
     margin: 0;
+}
+
+#myCarousel {
+    height: 300px!important;
+    background: url(../images/bginside.jpg) #111;
+}
+
+#myCarousel .carousel-control {
+    width: 50px;
+}
+
+#myCarousel .carousel-inner .item {
+    margin-left: 100px;
+    color: #fff!important;
+    height: 300px!important;
+    background-position-x: left;
+    background-size: auto 300px;
+    background-repeat: no-repeat;
+}
+
+#myCarousel .carousel-inner .item .carousel-caption {
+    text-align: left!important;
+    width: 400px;
+    margin-left: 300px;
+}
+
+#myCarousel .carousel-inner .item .carousel-caption h2,
+#myCarousel .carousel-inner .item .carousel-caption h3{
+    color: #fff!important;
 }
