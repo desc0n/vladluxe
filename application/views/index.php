@@ -87,7 +87,7 @@
 <!-- banner -->
 <div class="container">
     <div class="properties-listing spacer">
-        <a href="/search" class="pull-right viewall">Все предложения</a>
+        <a href="/search" class="viewall">Все предложения</a>
         <div id="owl-example" class="owl-carousel">
             <div class="properties">
                 <div class="image-holder">
