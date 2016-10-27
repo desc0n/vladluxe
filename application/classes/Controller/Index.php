@@ -80,4 +80,21 @@ class Controller_Index extends Controller_Base
             ->set('page', 'reviews');
         $this->response->body($template);
     }
+
+    public function action_search()
+    {
+        View::set_global('title', 'Поиск');
+
+        $template = View::factory('template');
+
+        $content = View::factory('search')
+        ;
+
+        $template
+            ->set('content', $content)
+            ->set('page', 'search')
+        ;
+
+        $this->response->body($template);
+    }
 }

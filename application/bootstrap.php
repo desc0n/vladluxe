@@ -153,6 +153,21 @@ Route::set('reviews', 'reviews',[
 		'action'     => 'reviews',
 	));
 
+Route::set('search', 'search',[
+        'controller' => 'index',
+        'action'     => 'search',
+    ])
+	->defaults([
+		'controller' => 'index',
+		'action'     => 'search',
+	]);
+
+Route::set('notice', 'notice/<id>',['id' =>'[0-9]+'])
+	->defaults([
+		'controller' => 'notice',
+		'action'     => 'index',
+	]);
+
 Route::set('default', '(<controller>(/<action>(/<id>)))',array('id' =>'[0-9a-z_]+'))
 	->defaults(array(
 		'controller' => 'index',

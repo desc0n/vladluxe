@@ -14,7 +14,7 @@
             <div class="col-lg-6 col-sm-6 ">
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 ">
-                        <h3>Владивосток, район "Баляева", ул. Адмирала Юмашева, 35/1</h3>
+                        <h3>Владивосток, ул. Адмирала Юмашева, 35/1</h3>
                         <p>
                             <span class="glyphicon glyphicon-envelope"></span>
                             <a href="mailto:abc@realestate.com">abc@realestete.com</a>

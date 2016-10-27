@@ -99,6 +99,28 @@ class Model_Notice extends Kohana_Model
 		return $noticeData;
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return array
+	 */
+	public function find($id)
+	{
+        $result = DB::select(
+			    'n.*',
+                [DB::select('c.name')->from(['category', 'c'])->where('c.id', '=', DB::expr('n.category')), 'category_name']
+            )
+            ->from(['notice', 'n'])
+            ->where('n.id', '=', $id)
+            ->and_where('n.status_id', '=', 1)
+            ->limit(1)
+			->execute()
+			->current()
+		;
+
+		return !$result ? [] : $result;
+	}
+
 	public function setNotice($params = [])
 	{
 		DB::update('notice')

@@ -9,21 +9,21 @@
             <div class="carousel-caption">
                 <h2>Маковского 120</h2>
                 <h3>2 спальные комнаты и 1 столовая на продажу</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/buysalerent'">Подробнее</button></p>
+                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
         <div class="item" style="background-image: url('/images/slider/2.jpg');">
             <div class="carousel-caption">
                 <h2>Шевченко 10</h2>
                 <h3>3 спальные комнаты и 1 столовая в аренду</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/buysalerent'">Подробнее</button></p>
+                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
         <div class="item" style="background-image: url('/images/slider/3.jpg');">
             <div class="carousel-caption">
                 <h2>Зеленая 10</h2>
                 <h3>4 спальные комнаты и 2 столовых в аренду</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/buysalerent'">Подробнее</button></p>
+                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
                             </select>
                         </div>
                         <div class="col-lg-3 col-sm-4">
-                            <button class="btn btn-success"  onclick="window.location.href='/buysalerent'">Найти</button>
+                            <button class="btn btn-success"  onclick="window.location.href='/search'">Найти</button>
                         </div>
                     </div>
 
@@ -87,12 +87,12 @@
 <!-- banner -->
 <div class="container">
     <div class="properties-listing spacer">
-        <a href="/buysalerent" class="pull-right viewall">Все предложения</a>
+        <a href="/search" class="pull-right viewall">Все предложения</a>
         <div id="owl-example" class="owl-carousel">
             <div class="properties">
                 <div class="image-holder">
                     <img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status sold">Продано</div>
+                    <div class="status sold">Сдается</div>
                 </div>
                 <h4>
                     <a href="/notice/1">Квартира</a>
@@ -109,7 +109,7 @@
             <div class="properties">
                 <div class="image-holder">
                     <img src="images/properties/2.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status new">New</div>
+                    <div class="status new">Новое</div>
                 </div>
                 <h4>
                     <a href="/notice/1">Квартира</a>
@@ -158,7 +158,7 @@
             <div class="properties">
                 <div class="image-holder">
                     <img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status sold">Продано</div>
+                    <div class="status sold">Сдается</div>
                 </div>
                 <h4>
                     <a href="/notice/1">Квартира</a>
@@ -175,7 +175,7 @@
             <div class="properties">
                 <div class="image-holder">
                     <img src="images/properties/2.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status sold">Продано</div>
+                    <div class="status sold">Сдается</div>
                 </div>
                 <h4>
                     <a href="/notice/1">Квартира</a>

@@ -2,7 +2,7 @@
 
 class Controller_Notice extends Controller_Base
 {
-	public function action_show()
+	public function action_index()
 	{
 		/** @var $contentModel Model_Content */
 		$contentModel = Model::factory('Content');
@@ -12,22 +12,16 @@ class Controller_Notice extends Controller_Base
 
 		$id = $this->request->param('id');
 
-		$params = $this->request->query();
-		$params['id'] = $id;
-
-
-		$notice = $noticeModel->getNotice($params);
+		$notice = $noticeModel->find($id);
 		$noticeModel->setNoticeView($id);
 
-		$itemData = (!empty($notice) ? $notice[0] : []);
-
-		View::set_global('title', Arr::get($itemData, 'name'));
-		View::set_global('rootPage', 'main');
+		View::set_global('title', Arr::get($notice, 'name'));
+		View::set_global('rootPage', 'notice');
 
 		$template = $contentModel->getBaseTemplate();
 
-		$template->content=View::factory('item')
-			->set('itemData', $itemData)
+		$template->content=View::factory('notice')
+			->set('notice', $notice)
 			->set('id', $id)
 		;
 
