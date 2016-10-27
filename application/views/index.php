@@ -48,9 +48,9 @@
                     <div class="row">
                         <div class="col-lg-3 col-sm-3 ">
                             <select class="form-control">
-                                <option>Купить</option>
-                                <option>Аренда</option>
+                                <option>Покупка</option>
                                 <option>Продажа</option>
+                                <option>Аренда</option>
                             </select>
                         </div>
                         <div class="col-lg-3 col-sm-4">

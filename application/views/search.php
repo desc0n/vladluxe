@@ -41,7 +41,7 @@
                                 <option>Тип недвижимости</option>
                                 <option>Квартира</option>
                                 <option>Дом</option>
-                                <option>Офисное помещение</option>
+                                <option>Под офис</option>
                             </select>
                         </div>
                     </div>
