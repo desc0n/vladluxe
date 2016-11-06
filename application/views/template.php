@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/assets/style.css"/>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap3-typeahead.js"></script>
     <script src="/assets/script.js"></script>
     <!-- Owl stylesheet -->
     <link rel="stylesheet" href="/assets/owl-carousel/owl.carousel.css">
@@ -57,8 +58,33 @@
                     <li class="active">
                         <a href="/">Главная</a>
                     </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="#">Аренда квартир</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li>
+                                <a href="#">Комната</a>
+                                <a href="#">Гостинка</a>
+                                <a href="#">1 комнатная</a>
+                                <a href="#">2 комнатная</a>
+                                <a href="#">3 комнатная</a>
+                                <a href="#">4 комнаты и более</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
-                        <a href="/page/about">О нас</a>
+                        <a href="#">Сдать квартиру</a>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="#">Аренда домов</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li>
+                                <a href="#">Частный дом</a>
+                                <a href="#">Котедж</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Вакансии</a>
                     </li>
                     <li>
                         <a href="/contact">Контакты</a>
@@ -72,44 +98,20 @@
 
 </div>
 <!-- #Header Starts -->
-
-
-
-
-
 <div class="container">
-
     <!-- Header Starts -->
     <div class="header">
         <a href="/">
             <img src="/images/logo.png" alt="">
         </a>
-
-        <ul class="pull-right">
-            <li>
-                <a href="/search?type=buy">Купить</a>
-            </li>
-            <li>
-                <a href="/search?type=sale">Продать</a>
-            </li>
-            <li>
-                <a href="/search?type=rent">Аренда</a>
-            </li>
-        </ul>
     </div>
     <!-- #Header Starts -->
 </div>
 <div class="">
-<?=$content;?>
+    <?=$content;?>
 </div>
-
-
 <div class="footer">
-
     <div class="container">
-
-
-
         <div class="row">
             <div class="col-lg-3 col-sm-3">
                 <h4>Информация</h4>
@@ -122,7 +124,6 @@
                     </li>
                 </ul>
             </div>
-
             <div class="col-lg-3 col-sm-3">
                 <h4>Сообщение</h4>
                 <p>Получать уведомление о новинках</p>
@@ -153,18 +154,16 @@
                 <p>
                     <b>Агенство недвижимости "Люкс"</b>
                     <br>
-                    <span class="glyphicon glyphicon-map-marker">
-
-          </span> Владивосток, ул. Ад. Юмашева, 35/1 <br>
-                    <span class="glyphicon glyphicon-envelope">
-
-          </span> hello@bootstrapreal.com<br>
-                    <span class="glyphicon glyphicon-earphone">
-
-          </span> (123) 456-7890</p>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                        Владивосток, ул. Ад. Юмашева, 35/1 <br>
+                    <span class="glyphicon glyphicon-envelope"></span>
+                        hello@bootstrapreal.com<br>
+                    <span class="glyphicon glyphicon-earphone">/span>
+                        (123) 456-7890
+                </p>
             </div>
         </div>
-        <p class="copyright">&copy; 2016. Все права защищены.	</p>
+        <p class="copyright">&copy; <?=date('Y');?>. Все права защищены.	</p>
     </div>
 </div>
 </body>

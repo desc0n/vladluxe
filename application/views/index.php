@@ -6,24 +6,24 @@
     </ol>
     <div class="carousel-inner">
         <div class="active item" style="background-image: url('/images/slider/1.jpg');">
-            <div class="carousel-caption">
+            <div class="carousel-caption row">
                 <h2>Маковского 120</h2>
                 <h3>2 спальные комнаты и 1 столовая на продажу</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
+                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
         <div class="item" style="background-image: url('/images/slider/2.jpg');">
-            <div class="carousel-caption">
+            <div class="carousel-caption row">
                 <h2>Шевченко 10</h2>
                 <h3>3 спальные комнаты и 1 столовая в аренду</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
+                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
         <div class="item" style="background-image: url('/images/slider/3.jpg');">
-            <div class="carousel-caption">
+            <div class="carousel-caption row">
                 <h2>Зеленая 10</h2>
                 <h3>4 спальные комнаты и 2 столовых в аренду</h3>
-                <p><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
+                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
             </div>
         </div>
     </div>
@@ -40,45 +40,33 @@
 <div class="banner-search">
     <div class="container">
         <!-- banner -->
-        <h3>Покупка, продажа и аренда</h3>
+        <h3>Поиск</h3>
         <div class="searchbar">
             <div class="row">
-                <div class="col-lg-6 col-sm-6">
-                    <input type="text" class="form-control" placeholder="Введите запрос для поиска">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-3 ">
-                            <select class="form-control">
-                                <option>Покупка</option>
-                                <option>Продажа</option>
-                                <option>Аренда</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-sm-4">
-                            <select class="form-control">
-                                <option>Цена</option>
-                                <option>150000 - 200000</option>
-                                <option>200000 - 250000</option>
-                                <option>250000 - 300000</option>
-                                <option>300000 - более</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-sm-4">
-                            <select class="form-control">
-                                <option>Квартира</option>
-                                <option>Дом</option>
-                                <option>Под офис</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-3 col-sm-4">
-                            <button class="btn btn-success"  onclick="window.location.href='/search'">Найти</button>
-                        </div>
+                <div class="col-lg-5 col-sm-12">
+                    <div class="col-lg-4 col-sm-4 searchbar-title">
+                        Район города
                     </div>
-
-
+                    <div class="col-lg-8 col-sm-8">
+                        <input type="text" class="form-control" placeholder="Введите район города" name="district" autocomplete="off">
+                    </div>
                 </div>
-                <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
-                    <!--          <p>Join now and get updated with all the properties deals.</p>-->
-                    <!--          <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button>        </div>-->
+                <div class="col-lg-4 col-sm-12">
+                    <div class="col-lg-3 col-sm-3 searchbar-title">
+                        Цена от
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <input type="text" class="form-control" placeholder="0">
+                    </div>
+                    <div class="col-lg-1 col-sm-1 searchbar-title">
+                        до
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <input type="text" class="form-control" placeholder="0">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <button class="btn btn-success"  onclick="window.location.href='/search'">Найти</button>
                 </div>
             </div>
         </div>
