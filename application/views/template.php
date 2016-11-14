@@ -34,26 +34,18 @@
     <div class="navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
-
-
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar">
-
-          </span>
-                    <span class="icon-bar">
-
-          </span>
-                    <span class="icon-bar">
-
-          </span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-
             </div>
-
-
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
+                <a href="/">
+                    <img src="/images/logo.png" alt="">
+                </a>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active">
                         <a href="/">Главная</a>
@@ -96,16 +88,6 @@
         </div>
     </div>
 
-</div>
-<!-- #Header Starts -->
-<div class="container">
-    <!-- Header Starts -->
-    <div class="header">
-        <a href="/">
-            <img src="/images/logo.png" alt="">
-        </a>
-    </div>
-    <!-- #Header Starts -->
 </div>
 <div class="">
     <?=$content;?>
@@ -166,5 +148,10 @@
         <p class="copyright">&copy; <?=date('Y');?>. Все права защищены.	</p>
     </div>
 </div>
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+    (function(){ var widget_id = 'UKEeJhjltn';var d=document;var w=window;function l(){
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>
