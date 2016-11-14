@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="">
+<div id="myCarousel" class="carousel slide hidden-xs hidden-md" data-interval="3000" data-ride="">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>

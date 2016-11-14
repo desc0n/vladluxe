@@ -43,10 +43,10 @@
             </div>
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
-                <a href="/">
+                <a class="logo-link hidden-xs hidden-sm hidden-md" href="/">
                     <img src="/images/logo.png" alt="">
                 </a>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right header-navbar">
                     <li class="active">
                         <a href="/">Главная</a>
                     </li>
