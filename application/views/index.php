@@ -45,10 +45,10 @@
             <div class="row">
                 <div class="col-lg-5 col-sm-12">
                     <div class="col-lg-4 col-sm-4 searchbar-title">
-                        Район города
+                        Улица
                     </div>
                     <div class="col-lg-8 col-sm-8">
-                        <input type="text" class="form-control" placeholder="Введите район города" name="district" autocomplete="off">
+                        <input type="text" class="form-control" placeholder="Введите улицу" name="street" autocomplete="off">
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12">
