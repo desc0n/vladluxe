@@ -145,4 +145,13 @@ class Model_Content extends Kohana_Model
             ->current()
         ;
     }
+
+    public function findAllDistricts()
+    {
+        return DB::select()
+            ->from('districts')
+            ->execute()
+            ->as_array('id', 'name')
+        ;
+    }
 }

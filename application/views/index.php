@@ -43,7 +43,15 @@
         <h3>Поиск</h3>
         <div class="searchbar">
             <div class="row">
-                <div class="col-lg-5 col-sm-12">
+                <div class="col-lg-3 col-sm-12">
+                    <div class="col-lg-4 col-sm-4 searchbar-title">
+                        Район
+                    </div>
+                    <div class="col-lg-8 col-sm-8">
+                        <?=Form::select('district', $districts, null, ['class' => 'form-control']);?>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
                     <div class="col-lg-4 col-sm-4 searchbar-title">
                         Улица
                     </div>
@@ -65,7 +73,7 @@
                         <input type="text" class="form-control" placeholder="0">
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12">
+                <div class="col-lg-2 col-sm-12">
                     <button class="btn btn-success"  onclick="window.location.href='/search'">Найти</button>
                 </div>
             </div>

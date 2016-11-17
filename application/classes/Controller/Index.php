@@ -18,6 +18,7 @@ class Controller_Index extends Controller_Base
         $template->content = View::factory('index')
             ->set('get', $_GET)
             ->set('post', $_POST)
+            ->set('districts', $contentModel->findAllDistricts())
         ;
 
 		$this->response->body($template);
