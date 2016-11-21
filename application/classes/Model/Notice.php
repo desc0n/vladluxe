@@ -41,23 +41,23 @@ class Model_Notice extends Kohana_Model
 		$order = Arr::get($params, 'order', 'asc');
 		
 		$id = Arr::get($params, 'id', 0);
-		$categoryId = Arr::get($params, 'category_id', 0);
+		$districtId = Arr::get($params, 'district_id', 0);
 		
 		if (!empty($id)) {
 			$sql = "select `n`.*,
-            (select `c`.`name` from `category` `c` where `c`.`id` = `n`.`category`) as `category_name`
+            (select `c`.`name` from `districts` `c` where `c`.`id` = `n`.`district`) as `district_name`
             from `notice` `n`
             where `n`.`id` = :id
             and `n`.`status_id` = 1
             LIMIT 0,1";
-		} else if (!empty($categoryId)) {
+		} else if (!empty($districtId)) {
 			$sql = "select `n`.*,
-			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`category` = :category_id and `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
-			(select `c`.`name` from `category` `c` where `c`.`id` = `n`.`category`) as `category_name`
+			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`district` = :district_id and `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
+			(select `c`.`name` from `districts` `c` where `c`.`id` = `n`.`district`) as `district_name`
 			from `notice` `n`
 			where (
-			    `n`.`category` = :category_id
-			    or `n`.`category` in (select `c`.`id` from `category` `c` where `c`.`parent_id` = :category_id)
+			    `n`.`district` = :district_id
+			    or `n`.`district` in (select `c`.`id` from `districst` `c` where `c`.`parent_id` = :district_id)
             )
 			and `n`.`status_id` = 1
 			$priceSql
@@ -67,7 +67,7 @@ class Model_Notice extends Kohana_Model
 		} else {
 			$sql = "select `n`.*,
 			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
-			(select `c`.`name` from `category` `c` where `c`.`id` = `n`.`category`) as `category_name`
+			(select `c`.`name` from `district` `c` where `c`.`id` = `n`.`district`) as `district_name`
 			from `notice` `n`
 			where `n`.`status_id` = 1
 			$priceSql
@@ -82,7 +82,7 @@ class Model_Notice extends Kohana_Model
 		$res = DB::query(Database::SELECT, $sql)
 			->parameters([
 				':id' => $id,
-				':category_id' => $categoryId,
+				':district_id' => $districtId,
 				':price' => $price
 			])
 			->execute()
@@ -108,7 +108,7 @@ class Model_Notice extends Kohana_Model
 	{
         $result = DB::select(
 			    'n.*',
-                [DB::select('c.name')->from(['category', 'c'])->where('c.id', '=', DB::expr('n.category')), 'category_name']
+                [DB::select('c.name')->from(['districts', 'c'])->where('c.id', '=', DB::expr('n.district')), 'district_name']
             )
             ->from(['notice', 'n'])
             ->where('n.id', '=', $id)
@@ -302,6 +302,33 @@ class Model_Notice extends Kohana_Model
 				->execute()
 			;
 		}
+	}
+
+	public function addNotice($params = [])
+	{
+		$res = DB::insert('notice', ['name', 'district', 'street', 'house', 'floor', 'flat_count', 'price', 'description'])
+			->values([
+				Arr::get($params, 'name', ''),
+				Arr::get($params, 'district'),
+				Arr::get($params, 'street'),
+				Arr::get($params, 'house'),
+				Arr::get($params, 'floor'),
+				Arr::get($params, 'flat_count', 1),
+				Arr::get($params, 'price', 0),
+				Arr::get($params, 'description', ''),
+			])
+			->execute()
+		;
+
+		$noticeId = $res[0];
+
+		DB::update('notice')
+			->set(['sort' => $noticeId])
+			->where('id', '=', $noticeId)
+			->execute()
+		;
+
+		return $noticeId;
 	}
 }
 ?>

@@ -154,4 +154,27 @@ class Model_Content extends Kohana_Model
             ->as_array('id', 'name')
         ;
     }
+
+    public function findAllStreets()
+    {
+        return DB::select()
+            ->from('streets')
+            ->execute()
+            ->as_array(null, 'name')
+        ;
+    }
+
+    public function findStreets($query)
+    {
+        if (empty($query)) {
+            return [];
+        }
+
+        return DB::select()
+            ->from('streets')
+            ->where('name', 'like', "%$query%")
+            ->execute()
+            ->as_array(null, 'name')
+        ;
+    }
 }

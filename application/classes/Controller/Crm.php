@@ -107,64 +107,46 @@ class Controller_Crm extends Controller_Base
         $this->response->body($template);
     }
 
-    public function action_sale()
+    public function action_add_notice()
     {
-        /** @var $actionModel Model_Action */
-        $actionModel = Model::factory('Action');
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
 
-        $saleId = $this->request->param('id');
-
-        if ($this->request->post('redactActionClient') !== null) {
-            $actionModel->setActionCustomer(
-                $this->request->post('redactActionClient'),
-                $this->request->post('name'),
-                $this->request->post('address'),
-                $this->request->post('tk'),
-                $this->request->post('phone'),
-                $this->request->post('email')
-            );
-
-            HTTP::redirect($this->request->referrer());
-        }
-
-        if ($this->request->post('addDelivery') !== null) {
-            $actionModel->addSaleDelivery($saleId);
-
-            HTTP::redirect($this->request->referrer());
-        }
-
-        $saleData = $actionModel->getSaleData($saleId);
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
 
         $template = $this->getBaseTemplate();
 
-        $template->content = View::factory('crm/sale_info')
-            ->set('saleData', $saleData)
-            ->set('saleProducts', $actionModel->getSaleProductsData($saleId))
-            ->set('get', $this->request->query())
+        $template->content = View::factory('crm/add_notice')
+            ->set('districts', $contentModel->findAllDistricts())
         ;
+
+        if (isset($_POST['addnotice'])) {
+            $id = $noticeModel->addNotice($_POST);
+            HTTP::redirect('/crm/redact_notice?id=' . $id);
+        }
 
         $this->response->body($template);
     }
 
-    public function action_sales_list()
+    public function action_redact_notice()
     {
-        /** @var $actionModel Model_Action */
-        $actionModel = Model::factory('Action');
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
 
         $template = $this->getBaseTemplate();
 
-        $startDate = DateTime::createFromFormat('d.m.Y', null != $this->request->query('start') ? $this->request->query('start') : date('d.m.Y'));
-        $endDate = DateTime::createFromFormat('d.m.Y', null != $this->request->query('end') ? $this->request->query('end') : date('d.m.Y'));
-
-        $start = null != $this->request->query('start') ? $startDate->format('d.m.Y') : $startDate->modify('- 1 week')->format('d.m.Y');
-        $end = $endDate->format('d.m.Y');
-
-        $template->content = View::factory('crm/sales_list')
-            ->set('actionsList', $actionModel->findAllSales($start, $end))
-            ->set('get', $this->request->query())
-            ->set('start', $start)
-            ->set('end', $end)
+        $template->content = View::factory('crm/redact_notice')
+            ->set('districts', $contentModel->findAllDistricts())
         ;
+
+        if (isset($_POST['addnotice'])) {
+            $id = $noticeModel->setNotice($_POST);
+            HTTP::redirect($this->request->referrer());
+        }
 
         $this->response->body($template);
     }

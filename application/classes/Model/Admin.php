@@ -35,24 +35,6 @@ class Model_Admin extends Kohana_Model
 			->execute();
 	}
 
-	public function addNotice($params = [])
-	{
-		$res = DB::query(Database::INSERT, "insert into `notice` (`name`, `category`) values (:name, :category)")
-			->param(':name', Arr::get($params, 'name', ''))
-			->param(':category', Arr::get($params, 'category', null))
-			->execute();
-
-		$noticeId = $res[0];
-
-        $sql = "update `notice` set `sort` = :id where `id` = :id";
-        DB::query(Database::UPDATE,$sql)
-            ->param(':id', $noticeId)
-            ->execute();
-
-        return $noticeId;
-	}
-
-
 	public function loadNoticeImg($filesGlobal, $notice_id)
 	{
 		$filesData = [];

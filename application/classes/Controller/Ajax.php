@@ -64,4 +64,12 @@ class Controller_Ajax extends Controller
 
         $this->response->body($cartModel->sendOrder($name, $phone, $address, $email));
     }
+
+    public function action_find_street()
+    {
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $this->response->body(json_encode($contentModel->findStreets($this->request->query('query'))));
+    }
 }
