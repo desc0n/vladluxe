@@ -91,7 +91,7 @@ class Model_Notice extends Kohana_Model
 
 		foreach ($res as $row) {
 			$noticeData[$i] = $row;
-			$noticeData[$i]['imgs'] = $this->getNoticeImg($row);
+			$noticeData[$i]['imgs'] = $this->getNoticeImg($row['id']);
 			$noticeData[$i]['files'] = $this->getNoticeFile($row);
 			$i++;
 		}
