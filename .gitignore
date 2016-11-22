@@ -1,5 +1,6 @@
 application/config/*
 public/i/*
-public/img
+public/img/original/*
+public/img/thumb/*
 vendor/*
 application/logs/*

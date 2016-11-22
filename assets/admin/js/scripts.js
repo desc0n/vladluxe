@@ -9,3 +9,24 @@ $(document).ready(function() {
         }
     });
 });
+
+function redactNoticeImg(id, src)
+{
+    $('#redactImgModal .modal-body')
+        .html('')
+        .append('<img src="/public/img/thumb/' + src + '" data-id="' + id + '">')
+    ;
+
+    $('#redactImgModal').modal('toggle');
+}
+
+function removeNoticeImg()
+{
+    var id = $('#redactImgModal .modal-body img').data('id');
+
+    $.ajax({url: '/ajax/remove_notice_img', type: 'POST', data: {id: id}, async: true})
+        .done(function () {
+            $('#redactImgModal').modal('toggle');
+            $('#noticeImg' + id).remove();
+        });
+}

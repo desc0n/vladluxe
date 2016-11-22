@@ -123,7 +123,7 @@ class Controller_Crm extends Controller_Base
 
         if (isset($_POST['addnotice'])) {
             $id = $noticeModel->addNotice($_POST);
-            HTTP::redirect('/crm/redact_notice?id=' . $id);
+            HTTP::redirect('/crm/redact_notice/' . $id);
         }
 
         $this->response->body($template);
@@ -141,10 +141,44 @@ class Controller_Crm extends Controller_Base
 
         $template->content = View::factory('crm/redact_notice')
             ->set('districts', $contentModel->findAllDistricts())
+            ->set('noticeData', $noticeModel->findById($this->request->param('id')))
         ;
 
-        if (isset($_POST['addnotice'])) {
-            $id = $noticeModel->setNotice($_POST);
+        $filename=Arr::get($_FILES, 'imgname', []);
+        if (!empty($filename)) {
+            $noticeModel->loadNoticeImg($_FILES, $this->request->param('id'));
+            HTTP::redirect($this->request->referrer());
+        }
+
+        if (isset($_POST['redact_notice'])) {
+            $noticeModel->setNotice($_POST);
+
+            HTTP::redirect($this->request->referrer());
+        }
+
+        $this->response->body($template);
+    }
+
+    public function action_notices_list()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $template = $this->getBaseTemplate();
+
+        $template->content = View::factory('crm/notices_list')
+            ->set('noticesList', $noticeModel->getList(
+                Arr::get($this->request->query(), 'page', 1),
+                Arr::get($this->request->query(), 'limit', 20)
+            ))
+        ;
+
+        if (isset($_POST['redact_notice'])) {
+            $noticeModel->setNotice($_POST);
+
             HTTP::redirect($this->request->referrer());
         }
 

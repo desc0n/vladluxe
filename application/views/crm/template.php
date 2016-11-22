@@ -17,6 +17,7 @@
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/bootstrap/js/bootstrap3-typeahead.js"></script>
     <script src="/assets/admin/js/scripts.js"></script>
+    <script src="/assets/admin/js/holder.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -37,7 +38,7 @@
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/crm/notice_list"><i class="fa fa-list fa-fw"></i> Список объявлений</a>
+                        <a href="/crm/notices_list"><i class="fa fa-list fa-fw"></i> Список объявлений</a>
                     </li>
                     <li>
                         <a href="/crm/add_notice"><i class="fa fa-file fa-fw"></i> Добавить объявление</a>

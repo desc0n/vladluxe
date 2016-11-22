@@ -35,48 +35,6 @@ class Model_Admin extends Kohana_Model
 			->execute();
 	}
 
-	public function loadNoticeImg($filesGlobal, $notice_id)
-	{
-		$filesData = [];
-
-		foreach ($filesGlobal['imgname']['name'] as $key => $data) {
-			$filesData[$key]['name'] = $filesGlobal['imgname']['name'][$key];
-			$filesData[$key]['type'] = $filesGlobal['imgname']['type'][$key];
-			$filesData[$key]['tmp_name'] = $filesGlobal['imgname']['tmp_name'][$key];
-			$filesData[$key]['error'] = $filesGlobal['imgname']['error'][$key];
-			$filesData[$key]['size'] = $filesGlobal['imgname']['size'][$key];
-		}
-
-		foreach ($filesData as $files) {
-			$sql = "insert into `notice_img` (`notice_id`) values (:id)";
-			$res = DB::query(Database::INSERT,$sql)
-                ->param(':id', $notice_id)
-                ->execute();
-
-			$new_id = $res[0];
-			$imageName = preg_replace("/[^0-9a-z.]+/i", "0", Arr::get($files,'name',''));
-			$file_name = 'public/img/original/'.$new_id.'_'.$imageName;
-			if (copy($files['tmp_name'], $file_name))	{
-				$image=Image::factory($file_name);
-				$image->resize(500, NULL);
-				$image->save($file_name,100);
-				$thumb_file_name = 'public/img/thumb/'.$new_id.'_'.$imageName;
-
-				if (copy($files['tmp_name'], $thumb_file_name))	{
-					$thumb_image=Image::factory($thumb_file_name);
-					$thumb_image->resize(300, NULL);
-					$thumb_image->save($thumb_file_name,100);
-
-					$sql = "update `notice_img` set `src` = :src,`status_id` = 1 where `id` = :id";
-					DB::query(Database::UPDATE,$sql)
-                        ->param(':id', $new_id)
-                        ->param(':src', $new_id.'_'.$imageName)
-                        ->execute();
-				}
-			}
-		}
-	}
-
 	public function addNoticeSale($params = [])
 	{
 		DB::query(Database::INSERT, "insert into `notice_sale` (`name`, `category`) values (:name, :category)")

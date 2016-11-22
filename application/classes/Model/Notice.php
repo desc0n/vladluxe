@@ -104,7 +104,7 @@ class Model_Notice extends Kohana_Model
 	 *
 	 * @return array
 	 */
-	public function find($id)
+	public function findById($id)
 	{
         $result = DB::select(
 			    'n.*',
@@ -125,24 +125,16 @@ class Model_Notice extends Kohana_Model
 	{
 		DB::update('notice')
         	->set([
-        		'article' => ':article',
-        		'name' => ':name',
-				'price' => ':price',
-				'description' => ':description',
-				'short_description' => ':short_description',
-				'status_id' => 1,
-				'sort' => ':sort'
+        		'name' => Arr::get($params, 'name', ''),
+				'district' => Arr::get($params, 'district'),
+				'street' => Arr::get($params, 'street'),
+				'house' => Arr::get($params, 'house'),
+				'floor' => Arr::get($params, 'floor'),
+				'flat_count' => Arr::get($params, 'flat_count', 1),
+				'price' => Arr::get($params, 'price', 0),
+				'description' => Arr::get($params, 'description', '')
 			])
-			->where('id', '=', ':id')
-			->parameters([
-				':id' => Arr::get($params,'redactnotice'),
-				':article' => Arr::get($params,'article',''),
-				':name' => Arr::get($params,'name',''),
-				':price' => Arr::get($params,'price',''),
-				':description' => Arr::get($params,'description',''),
-				':short_description' => Arr::get($params,'short_description',''),
-				':sort' => Arr::get($params, 'sort', 1)
-			])
+			->where('id', '=', Arr::get($params,'redact_notice'))
 			->execute()
 		;
 	}
@@ -177,21 +169,27 @@ class Model_Notice extends Kohana_Model
             ->execute();
     }
 
-    public function getNoticeImg($params = [])
+    public function getNoticeImg($id)
 	{
-		$sql = "select * from `notice_img` where `notice_id` = :id and `status_id` = 1";
-		return DB::query(Database::SELECT, $sql)
-			->param(':id', Arr::get($params, 'id', 0))
+		return DB::select()
+			->from('notice_img')
+			->where('notice_id', '=', $id)
+			->and_where('status_id', '=', 1)
 			->execute()
-			->as_array();
+			->as_array()
+		;
 	}
 
-	public function removeNoticeImg($params = [])
+	public function removeNoticeImg($id)
 	{
-		$sql = "update `notice_img` set `status_id` = 0 where `id` = :id";
-		DB::query(Database::UPDATE,$sql)
-			->param(':id', Arr::get($params,'removeimg',0))
-			->execute();
+		DB::update('notice_img')
+			->set([
+				'status_id' => 0,
+				'updated_at' => DB::expr('NOW()')
+			])
+			->where('id', '=', $id)
+			->execute()
+		;
 	}
 
 	public function deleteNotice($params)
@@ -280,7 +278,20 @@ class Model_Notice extends Kohana_Model
 
 		return $data;
 	}
-	
+
+	public function getList($page, $limit)
+	{
+		return DB::select('n.*', ['d.name', 'district_name'])
+			->from(['notice', 'n'])
+			->join(['districts', 'd'], 'left')
+			->on('d.id', '=', 'n.district')
+			->offset((($page - 1) * $limit))
+			->limit(($page * $limit))
+			->execute()
+			->as_array()
+		;
+	}
+
 	public function setNoticeView($id)
 	{
 		$ip = Arr::get($_SERVER, 'REMOTE_ADDR', '');
@@ -330,5 +341,58 @@ class Model_Notice extends Kohana_Model
 
 		return $noticeId;
 	}
+
+
+    public function loadNoticeImg($filesGlobal, $noticeId)
+    {
+        $filesData = [];
+
+        foreach ($filesGlobal['imgname']['name'] as $key => $data) {
+            $filesData[$key]['name'] = $filesGlobal['imgname']['name'][$key];
+            $filesData[$key]['type'] = $filesGlobal['imgname']['type'][$key];
+            $filesData[$key]['tmp_name'] = $filesGlobal['imgname']['tmp_name'][$key];
+            $filesData[$key]['error'] = $filesGlobal['imgname']['error'][$key];
+            $filesData[$key]['size'] = $filesGlobal['imgname']['size'][$key];
+        }
+
+        foreach ($filesData as $files) {
+            $res = DB::insert('notice_img', ['notice_id'])
+                ->values([$noticeId])
+                ->execute();
+
+            $new_id = $res[0];
+
+            $imageName = preg_replace("/[^0-9a-z.]+/i", "0", Arr::get($files,'name',''));
+            $file_name = 'public/img/original/' . $new_id . '_' . $imageName;
+
+            if (copy($files['tmp_name'], $file_name))	{
+                $image = Image::factory($file_name);
+                $image
+                    ->resize(500, NULL)
+                    ->save($file_name,100)
+                ;
+
+                $thumb_file_name = 'public/img/thumb/' . $new_id . '_' . $imageName;
+
+                if (copy($files['tmp_name'], $thumb_file_name))	{
+                    $thumb_image = Image::factory($thumb_file_name);
+                    $thumb_image
+						->resize(300, NULL)
+						->save($thumb_file_name,100)
+					;
+
+                    DB::update('notice_img')
+						->set([
+							'src' => $new_id . '_' . $imageName,
+							'status_id' => 1,
+							'updated_at' => DB::expr('NOW()')
+						])
+						->where('id', '=', $new_id)
+                        ->execute()
+					;
+                }
+            }
+        }
+    }
 }
 ?>

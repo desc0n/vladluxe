@@ -12,7 +12,7 @@ class Controller_Notice extends Controller_Base
 
 		$id = $this->request->param('id');
 
-		$notice = $noticeModel->find($id);
+		$notice = $noticeModel->findById($id);
 		$noticeModel->setNoticeView($id);
 
 		View::set_global('title', Arr::get($notice, 'name'));

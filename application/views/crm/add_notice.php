@@ -5,7 +5,7 @@
       <div class="col-md-8">
         <div class="text-muted col-md-12">Улица:</div>
         <div class="col-md-12">
-          <input type="text" class="form-control"  name="street" id="street" value="">
+          <input type="text" class="form-control"  name="street" id="street" value="" autocomplete="off">
         </div>
       </div>
       <div class="col-md-4">
