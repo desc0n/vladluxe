@@ -174,6 +174,8 @@ class Controller_Crm extends Controller_Base
                 Arr::get($this->request->query(), 'page', 1),
                 Arr::get($this->request->query(), 'limit', 20)
             ))
+            ->set('paginationCount', $noticeModel->getListPaginationCount(Arr::get($this->request->query(), 'limit', 20)))
+            ->set('page', Arr::get($this->request->query(), 'page', 1))
         ;
 
         if (isset($_POST['redact_notice'])) {

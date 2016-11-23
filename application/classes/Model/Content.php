@@ -14,6 +14,7 @@ class Model_Content extends Kohana_Model
             ->set('menu', $this->getMenu())
             ->set('categories', $this->getCategory())
             ->set('lastSeeItems', $noticeModel->findLastSeeItems())
+            ->set('noticeTypes', $noticeModel->findAllTypes())
             ;
     }
     

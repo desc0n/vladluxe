@@ -19,4 +19,14 @@ class Controller_Ajax extends Controller
 
         $this->response->body(json_encode(['result' =>'success']));
     }
+
+    public function action_remove_notice()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        $noticeModel->removeNotice($this->request->post('id'));
+
+        $this->response->body(json_encode(['result' =>'success']));
+    }
 }

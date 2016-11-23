@@ -192,12 +192,13 @@ class Model_Notice extends Kohana_Model
 		;
 	}
 
-	public function deleteNotice($params)
+	public function removeNotice($id)
 	{
-		$sql = "update `notice` set `status_id` = 0 where `id` = :id";
-		DB::query(Database::UPDATE,$sql)
-			->param(':id', Arr::get($params,'id',0))
-			->execute();
+		DB::update('notice')
+			->set(['status_id' => 0])
+			->where('id', '=', $id)
+			->execute()
+		;
 	}
 
 	public function getNoticeFile($params = [])
@@ -285,11 +286,25 @@ class Model_Notice extends Kohana_Model
 			->from(['notice', 'n'])
 			->join(['districts', 'd'], 'left')
 			->on('d.id', '=', 'n.district')
+			->where('n.status_id', '=', 1)
 			->offset((($page - 1) * $limit))
 			->limit(($page * $limit))
+			->order_by('n.id', 'DESC')
 			->execute()
 			->as_array()
 		;
+	}
+
+	public function getListPaginationCount($limit)
+	{
+		$count = DB::select()
+			->from('notice')
+			->where('status_id', '=', 1)
+			->execute()
+			->count()
+		;
+
+		return ceil($count / $limit);
 	}
 
 	public function setNoticeView($id)
@@ -394,5 +409,15 @@ class Model_Notice extends Kohana_Model
             }
         }
     }
+
+    public function findAllTypes()
+	{
+		return DB::select()
+			->from('notice__type')
+			->order_by('id', 'ASC')
+			->execute()
+			->as_array('id', 'name')
+		;
+	}
 }
 ?>

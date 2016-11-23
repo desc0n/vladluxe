@@ -1,3 +1,7 @@
+<?php
+/** @var $noticeModel Model_Notice */
+$noticeModel = Model::factory('Notice');
+?>
 <div id="myCarousel" class="carousel slide hidden-xs hidden-md" data-interval="3000" data-ride="">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -85,155 +89,27 @@
     <div class="properties-listing spacer">
         <a href="/search" class="viewall">Все предложения</a>
         <div id="owl-example" class="owl-carousel">
+            <?foreach ($noticeModel->getList(1, 10) as $noticeData) {
+                $noticeImgs = $noticeModel->getNoticeImg(Arr::get($noticeData,'id'));?>
             <div class="properties">
                 <div class="image-holder">
-                    <img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
+                    <?$imgSrc = count($noticeImgs) === 0 ? '/images/nopic.jpg' : '/public/img/thumb/' . $noticeImgs[0]['src'];?>
+                    <img src="<?=$imgSrc;?>" class="img-responsive" alt="properties"/>
                     <div class="status sold">Сдается</div>
                 </div>
                 <h4>
-                    <a href="/notice/1">Квартира</a>
+                    <a href="/notice/<?=$noticeData['id'];?>">Квартира</a>
                 </h4>
-                <p class="price">Цена: $234,900</p>
+                <p class="price">Цена: <?=$noticeData['price'];?></p>
                 <div class="listing-detail">
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
                 </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
+                <a class="btn btn-primary" href="/notice/<?=$noticeData['id'];?>">Подробнее</a>
             </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/2.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status new">Новое</div>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/3.jpg" class="img-responsive" alt="properties"/>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/4.jpg" class="img-responsive" alt="properties"/>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status sold">Сдается</div>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/2.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status sold">Сдается</div>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/3.jpg" class="img-responsive" alt="properties"/>
-                    <div class="status new">Новинка</div>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/4.jpg" class="img-responsive" alt="properties"/>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
-            <div class="properties">
-                <div class="image-holder">
-                    <img src="images/properties/1.jpg" class="img-responsive" alt="properties"/>
-                </div>
-                <h4>
-                    <a href="/notice/1">Квартира</a>
-                </h4>
-                <p class="price">Цена: $234,900</p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
-                <a class="btn btn-primary" href="/notice/1">Подробнее</a>
-            </div>
+            <?}?>
         </div>
     </div>
 </div>

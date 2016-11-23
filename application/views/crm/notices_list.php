@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                 <?foreach ($noticesList as $notice) {?>
-                    <tr>
+                    <tr id="noticeRow<?=$notice['id'];?>">
                         <td class="text-center">
                             <?=(empty($notice['district_name']) ? null : $notice['district_name'] . ', ');?>
                             <?=(empty($notice['street']) ? null : $notice['street'] . ', ');?>
@@ -27,7 +27,8 @@
                         <td class="text-center"><?=$notice['name'];?></td>
                         <td><?=$notice['price'];?></td>
                         <td class="text-center">
-                            <a class="btn btn-default" href="/crm/redact_notice/<?=$notice['id'];?>"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a title="Редактировать объявление" class="btn btn-default" href="/crm/redact_notice/<?=$notice['id'];?>"><i class="fa fa-pencil fa-fw"></i></a>
+                            <button title="Удалить объявление" class="btn btn-danger" onclick="removeNotice(<?=$notice['id'];?>);"><i class="fa fa-remove fa-fw"></i></button>
                         </td>
                     </tr>
                 <?}?>
@@ -35,4 +36,15 @@
             </table>
         </div>
     </div>
+</div>
+<div class="row-md-12">
+    <ul class="pagination">
+        <?for ($i = 1; $i < $paginationCount; $i++) {
+            if ($i == $page) {?>
+        <li class="active"><span><?=$i;?><span class="sr-only">(current)</span></span></li>
+            <?} else {?>
+        <li><a href="/crm/notices_list/?page=<?=$i;?>"><?=$i;?></a></li>
+            <?}
+        }?>
+    </ul>
 </div>

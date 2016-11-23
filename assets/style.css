@@ -93,6 +93,11 @@ table{background-color: #fff;}
 .hot-properties {margin-bottom: 50px;}
 .hot-properties img{width: 68px; height: 68px;}
 .hot-properties h4{margin-bottom: 20px;}
+.properties h4 a,
+.properties h4 a:hover,
+.properties h4 a:visited {
+    color: #000;
+}
 .hot-properties .row{margin-bottom: 20px;}
 .hot-properties .row p{margin-bottom: 5px;}
 

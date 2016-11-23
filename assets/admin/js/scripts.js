@@ -30,3 +30,11 @@ function removeNoticeImg()
             $('#noticeImg' + id).remove();
         });
 }
+
+function removeNotice(id)
+{
+    $.ajax({url: '/ajax/remove_notice', type: 'POST', data: {id: id}, async: true})
+        .done(function () {
+            $('#noticeRow' + id).remove();
+        });
+}

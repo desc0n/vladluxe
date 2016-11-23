@@ -54,12 +54,9 @@
                         <a data-toggle="dropdown" href="#">Аренда квартир</a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li>
-                                <a href="#">Комната</a>
-                                <a href="#">Гостинка</a>
-                                <a href="#">1 комнатная</a>
-                                <a href="#">2 комнатная</a>
-                                <a href="#">3 комнатная</a>
-                                <a href="#">4 комнаты и более</a>
+                                <?foreach ($noticeTypes as $id => $type) {?>
+                                <a href="#"><?=$type;?></a>
+                                <?}?>
                             </li>
                         </ul>
                     </li>
