@@ -127,6 +127,7 @@ class Controller_Crm extends Controller_Base
 
         $template->content = View::factory('crm/add_notice')
             ->set('districts', $contentModel->findAllDistricts())
+            ->set('types', $noticeModel->findAllTypes())
         ;
 
         if (isset($_POST['addnotice'])) {
