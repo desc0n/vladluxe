@@ -33,7 +33,14 @@
             </button>
         </div>
         <!-- /.navbar-header -->
-        <h1>Администраторская панель</h1>
+        <h1>
+            Администраторская панель
+            <div class="pull-right">
+                <form method="post" action="/crm/logout">
+                    <button class="btn btn-default" name="logout"><i class="fa fa-sign-out fa-fw"></i></button>
+                </form>
+            </div>
+        </h1>
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">

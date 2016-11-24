@@ -4,10 +4,14 @@ class Controller_Crm extends Controller_Base
 {
     public function getBaseTemplate()
     {
+        if (!Auth::instance()->logged_in('admin')) {
+            HTTP::redirect('/crm/login');
+        }
+
         return View::factory('crm/template')
             ->set('get', $_GET)
             ->set('post', $_POST)
-            ;
+        ;
     }
 
     public function action_index()
@@ -20,11 +24,6 @@ class Controller_Crm extends Controller_Base
             Auth::instance()->logout();
             HTTP::redirect('/');
         }
-
-        /**
-         * @var $adminModel Model_Admin
-         */
-        $adminModel = Model::factory('Admin');
 
         $template = $this->getBaseTemplate();
 
@@ -46,6 +45,15 @@ class Controller_Crm extends Controller_Base
         ;
 
         $this->response->body($template);
+    }
+
+    public function action_logout()
+    {
+        if (Auth::instance()->logged_in() && isset($_POST['logout'])) {
+            Auth::instance()->logout();
+
+            HTTP::redirect('/');
+        }
     }
 
     public function action_registration()
