@@ -25,7 +25,7 @@
       <div class="col-md-3">
         <div class="text-muted col-md-12">Тип:</div>
         <div class="col-md-12">
-          <?=Form::select('type', $types, Arr::get($noticeData, 'type'), ['class' => 'form-control']);?>
+          <?=Form::select('type', $types, null, ['class' => 'form-control']);?>
         </div>
       </div>
       <div class="col-md-3">
