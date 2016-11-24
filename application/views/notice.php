@@ -108,7 +108,7 @@
                     <div class="col-lg-4">
                         <div class="col-lg-12  col-sm-6">
                             <div class="property-info">
-                                <p class="price"><?=$notice['price'];?></p>
+                                <p class="price"><?=$notice['price'];?> руб.</p>
                                 <p class="area"><span class="glyphicon glyphicon-map-marker"></span><?=(empty($notice['street']) ? null : $notice['street'] . ' ');?><?=$notice['house'];?></p>
                             </div>
 
