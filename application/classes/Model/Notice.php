@@ -335,8 +335,9 @@ class Model_Notice extends Kohana_Model
 
 	public function addNotice($params = [])
 	{
-		$res = DB::insert('notice', ['name', 'district', 'street', 'house', 'floor', 'price', 'description'])
+		$res = DB::insert('notice', ['type', 'name', 'district', 'street', 'house', 'floor', 'price', 'description'])
 			->values([
+				Arr::get($params, 'type'),
 				Arr::get($params, 'name', ''),
 				Arr::get($params, 'district'),
 				Arr::get($params, 'street'),
