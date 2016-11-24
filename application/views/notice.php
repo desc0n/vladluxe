@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-lg-9 col-sm-8 ">
-                <h2>Квартира с 2 комнатами и кухней</h2>
+                <h2><?=$notice['name'];?></h2>
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="property-images">
@@ -94,14 +94,13 @@
                         </div>
                         <div class="spacer">
                             <h4><span class="glyphicon glyphicon-th-list"></span>Описание</h4>
-                            <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
-                            <p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service</p>
+                            <p><?=$notice['description'];?></p>
 
                         </div>
                         <div>
                             <h4><span class="glyphicon glyphicon-map-marker"></span> Местоположения </h4>
                             <div class="well">
-                                <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=ru&amp;geocode=&amp;q=Владивосток+Маковского+100&amp;aq=0&amp;oq=pulch&amp;ie=UTF8&amp;hq=&amp;hnear=Владивосток+Маковского+100&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+                                <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=ru&geocode=&q=Владивосток+<?=(empty($notice['street']) ? null : $notice['street'] . '+');?><?=$notice['house'];?>&aq=0&oq=pulch&ie=UTF8&hq=&hnear=Владивосток+Маковского+100&t=m&z=14&output=embed"></iframe>
                             </div>
                         </div>
 
@@ -109,11 +108,11 @@
                     <div class="col-lg-4">
                         <div class="col-lg-12  col-sm-6">
                             <div class="property-info">
-                                <p class="price">200,000,000</p>
-                                <p class="area"><span class="glyphicon glyphicon-map-marker"></span> Маковского 100</p>
+                                <p class="price"><?=$notice['price'];?></p>
+                                <p class="area"><span class="glyphicon glyphicon-map-marker"></span><?=(empty($notice['street']) ? null : $notice['street'] . ' ');?><?=$notice['house'];?></p>
                             </div>
 
-                            <h6><span class="glyphicon glyphicon-home"></span> Характеристики</h6>
+<!--                            <h6><span class="glyphicon glyphicon-home"></span> Характеристики</h6>-->
 <!--                            <div class="listing-detail">-->
 <!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная комната">5</span>-->
 <!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостевая">2</span>-->

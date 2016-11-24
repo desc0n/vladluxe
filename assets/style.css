@@ -248,3 +248,7 @@ h2{font-size: 25px;}
 .properties h4 a:visited {
     color: #000;
 }
+
+.properties .img-responsive {
+    min-height: 150px;
+}
