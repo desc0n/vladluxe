@@ -36,10 +36,16 @@
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-md-12">
+      <div class="col-md-8">
         <div class="text-muted col-md-12">Название:</div>
         <div class="col-md-12">
           <input type="text" class="form-control"  name="name" placeholder="Название" value="">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-muted col-md-12">Цена:</div>
+        <div class="col-md-12">
+          <input type="text" class="form-control"  name="price" placeholder="Стоимость" value="0">
         </div>
       </div>
     </div>
