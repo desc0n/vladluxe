@@ -37,7 +37,7 @@ class Controller_Crm extends Controller_Base
     {
         if (!Auth::instance()->logged_in() && isset($_POST['login'])) {
             Auth::instance()->login($this->request->post('username'), $this->request->post('password'),true);
-            HTTP::redirect('/crm');
+            HTTP::redirect('/crm/notice_list');
         }
 
         $template = View::factory('crm/login')
