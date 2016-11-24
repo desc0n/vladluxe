@@ -108,7 +108,8 @@ class Model_Notice extends Kohana_Model
 	{
         $result = DB::select(
 			    'n.*',
-                [DB::select('c.name')->from(['districts', 'c'])->where('c.id', '=', DB::expr('n.district')), 'district_name']
+                [DB::select('d.name')->from(['districts', 'd'])->where('d.id', '=', DB::expr('n.district')), 'district_name'],
+                [DB::select('t.name')->from(['notice__type', 't'])->where('t.id', '=', DB::expr('n.type')), 'type_name']
             )
             ->from(['notice', 'n'])
             ->where('n.id', '=', $id)
@@ -125,12 +126,12 @@ class Model_Notice extends Kohana_Model
 	{
 		DB::update('notice')
         	->set([
+        		'type' => Arr::get($params, 'type'),
         		'name' => Arr::get($params, 'name', ''),
 				'district' => Arr::get($params, 'district'),
 				'street' => Arr::get($params, 'street'),
 				'house' => Arr::get($params, 'house'),
 				'floor' => Arr::get($params, 'floor'),
-				'flat_count' => Arr::get($params, 'flat_count', 1),
 				'price' => Arr::get($params, 'price', 0),
 				'description' => Arr::get($params, 'description', '')
 			])
@@ -282,10 +283,12 @@ class Model_Notice extends Kohana_Model
 
 	public function getList($page, $limit)
 	{
-		return DB::select('n.*', ['d.name', 'district_name'])
+		return DB::select('n.*', ['d.name', 'district_name'], ['t.name', 'type_name'])
 			->from(['notice', 'n'])
 			->join(['districts', 'd'], 'left')
 			->on('d.id', '=', 'n.district')
+			->join(['notice__type', 't'], 'left')
+			->on('t.id', '=', 'n.type')
 			->where('n.status_id', '=', 1)
 			->offset((($page - 1) * $limit))
 			->limit(($page * $limit))
@@ -332,14 +335,13 @@ class Model_Notice extends Kohana_Model
 
 	public function addNotice($params = [])
 	{
-		$res = DB::insert('notice', ['name', 'district', 'street', 'house', 'floor', 'flat_count', 'price', 'description'])
+		$res = DB::insert('notice', ['name', 'district', 'street', 'house', 'floor', 'price', 'description'])
 			->values([
 				Arr::get($params, 'name', ''),
 				Arr::get($params, 'district'),
 				Arr::get($params, 'street'),
 				Arr::get($params, 'house'),
 				Arr::get($params, 'floor'),
-				Arr::get($params, 'flat_count', 1),
 				Arr::get($params, 'price', 0),
 				Arr::get($params, 'description', ''),
 			])

@@ -142,6 +142,7 @@ class Controller_Crm extends Controller_Base
         $template->content = View::factory('crm/redact_notice')
             ->set('districts', $contentModel->findAllDistricts())
             ->set('noticeData', $noticeModel->findById($this->request->param('id')))
+            ->set('types', $noticeModel->findAllTypes())
         ;
 
         $filename=Arr::get($_FILES, 'imgname', []);
@@ -164,9 +165,6 @@ class Controller_Crm extends Controller_Base
         /** @var $noticeModel Model_Notice */
         $noticeModel = Model::factory('Notice');
 
-        /** @var $contentModel Model_Content */
-        $contentModel = Model::factory('Content');
-
         $template = $this->getBaseTemplate();
 
         $template->content = View::factory('crm/notices_list')
@@ -176,13 +174,8 @@ class Controller_Crm extends Controller_Base
             ))
             ->set('paginationCount', $noticeModel->getListPaginationCount(Arr::get($this->request->query(), 'limit', 20)))
             ->set('page', Arr::get($this->request->query(), 'page', 1))
+            ->set('types', $noticeModel->findAllTypes())
         ;
-
-        if (isset($_POST['redact_notice'])) {
-            $noticeModel->setNotice($_POST);
-
-            HTTP::redirect($this->request->referrer());
-        }
 
         $this->response->body($template);
     }

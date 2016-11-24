@@ -109,17 +109,17 @@
                     <div class="col-lg-4">
                         <div class="col-lg-12  col-sm-6">
                             <div class="property-info">
-                                <p class="price">$ 200,000,000</p>
+                                <p class="price">200,000,000</p>
                                 <p class="area"><span class="glyphicon glyphicon-map-marker"></span> Маковского 100</p>
                             </div>
 
                             <h6><span class="glyphicon glyphicon-home"></span> Характеристики</h6>
-                            <div class="listing-detail">
-                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная комната">5</span>
-                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостевая">2</span>
-                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                            </div>
+<!--                            <div class="listing-detail">-->
+<!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная комната">5</span>-->
+<!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостевая">2</span>-->
+<!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>-->
+<!--                                <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>-->
+<!--                            </div>-->
 
                         </div>
                         <div class="col-lg-12 col-sm-6 ">

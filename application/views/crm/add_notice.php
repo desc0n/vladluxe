@@ -23,9 +23,9 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="text-muted col-md-12">Кол-во комнат:</div>
-          <div class="col-md-12">
-          <input type="text" class="form-control"  name="flat_count" value="1">
+        <div class="text-muted col-md-12">Тип:</div>
+        <div class="col-md-12">
+          <?=Form::select('type', $types, Arr::get($noticeData, 'type'), ['class' => 'form-control']);?>
         </div>
       </div>
       <div class="col-md-3">

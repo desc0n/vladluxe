@@ -20,7 +20,7 @@ h6 span{margin-right: 5px; font-size: 12px;}
 
 p{margin-bottom: 30px;}
 a{color:#fff; text-decoration:none;outline: none;}
-a:hover{color:#333;}
+a:hover{color:#ccc;}
 .spacer{margin-top: 40px;margin-bottom:40px;}
 .center{text-align: center;}
 .fullwidth{width: 100%;}
@@ -51,7 +51,7 @@ table{background-color: #fff;}
 .banner-search h3{color: #fff;}
 
 
-.properties-listing .viewall{margin: 5px;}
+.properties-listing .viewall{margin: 5px;color: #000;}
 .properties-listing div.properties{padding: 10px; background-color: #fff;text-align: center; margin-bottom: 20px;}
 .owl-wrapper-outer div.properties{margin: 0 5px;}
 .properties-listing div.properties .image-holder{position: relative;}
@@ -93,11 +93,6 @@ table{background-color: #fff;}
 .hot-properties {margin-bottom: 50px;}
 .hot-properties img{width: 68px; height: 68px;}
 .hot-properties h4{margin-bottom: 20px;}
-.properties h4 a,
-.properties h4 a:hover,
-.properties h4 a:visited {
-    color: #000;
-}
 .hot-properties .row{margin-bottom: 20px;}
 .hot-properties .row p{margin-bottom: 5px;}
 
@@ -242,3 +237,14 @@ h2{font-size: 25px;}
     padding: 10px 0;
 }
 
+.pagination a,
+.pagination a:hover,
+.pagination a:visited,
+.hot-properties a,
+.hot-properties a:hover,
+.hot-properties a:visited,
+.properties h4 a,
+.properties h4 a:hover,
+.properties h4 a:visited {
+    color: #000;
+}

@@ -5,6 +5,9 @@
  */
 class Model_Content extends Kohana_Model
 {
+    /**
+     * @return View
+     */
     public function getBaseTemplate()
     {
         /** @var $noticeModel Model_Notice */

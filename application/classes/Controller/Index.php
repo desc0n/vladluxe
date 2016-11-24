@@ -81,11 +81,20 @@ class Controller_Index extends Controller_Base
 
     public function action_search()
     {
-        View::set_global('title', 'Поиск');
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
 
-        $template = View::factory('template');
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        View::set_global('title', 'Поиск');
+        View::set_global('rootPage', 'search');
+
+        $template = $contentModel->getBaseTemplate();
 
         $content = View::factory('search')
+            ->set('districts', $contentModel->findAllDistricts())
+            ->set('types', $noticeModel->findAllTypes())
         ;
 
         $template

@@ -98,15 +98,13 @@ $noticeModel = Model::factory('Notice');
                     <div class="status sold">Сдается</div>
                 </div>
                 <h4>
-                    <a href="/notice/<?=$noticeData['id'];?>">Квартира</a>
+                    <a href="/notice/<?=$noticeData['id'];?>"><?=$noticeData['type_name'];?></a>
                 </h4>
                 <p class="price">Цена: <?=$noticeData['price'];?></p>
-                <div class="listing-detail">
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Парковка">2</span>
-                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Кухня">1</span>
-                </div>
+<!--                <div class="listing-detail">-->
+<!--                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>-->
+<!--                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>-->
+<!--                </div>-->
                 <a class="btn btn-primary" href="/notice/<?=$noticeData['id'];?>">Подробнее</a>
             </div>
             <?}?>

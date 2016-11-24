@@ -26,10 +26,10 @@ $noticeModel = Model::factory('Notice');
             <h3>Описание</h3>
             <form method="post">
                 <div class="row form-group">
-                    <div class="col-md-2">
-                        <div class="text-muted col-md-12">Кол-во комнат:</div>
+                    <div class="col-md-3">
+                        <div class="text-muted col-md-12">Тип:</div>
                         <div class="col-md-12">
-                            <input type="text" class="form-control"  name="flat_count" value="<?=Arr::get($noticeData, 'flat_count');?>">
+                            <?=Form::select('type', $types, Arr::get($noticeData, 'type'), ['class' => 'form-control']);?>
                         </div>
                     </div>
                     <div class="col-md-2">

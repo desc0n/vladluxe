@@ -10,6 +10,7 @@
             <table class="table table-bordered table-hover notices-table">
                 <thead>
                 <tr>
+                    <th>Тип</th>
                     <th>Адрес</th>
                     <th>Название</th>
                     <th>Стоимость</th>
@@ -19,12 +20,13 @@
                 <tbody>
                 <?foreach ($noticesList as $notice) {?>
                     <tr id="noticeRow<?=$notice['id'];?>">
-                        <td class="text-center">
+                        <td><?=$notice['type_name'];?></td>
+                        <td>
                             <?=(empty($notice['district_name']) ? null : $notice['district_name'] . ', ');?>
                             <?=(empty($notice['street']) ? null : $notice['street'] . ', ');?>
                             <?=$notice['house'];?>
                         </td>
-                        <td class="text-center"><?=$notice['name'];?></td>
+                        <td><?=$notice['name'];?></td>
                         <td><?=$notice['price'];?></td>
                         <td class="text-center">
                             <a title="Редактировать объявление" class="btn btn-default" href="/crm/redact_notice/<?=$notice['id'];?>"><i class="fa fa-pencil fa-fw"></i></a>
