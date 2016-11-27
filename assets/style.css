@@ -256,7 +256,8 @@ h2{font-size: 25px;}
 }
 
 .properties .img-responsive {
-    min-height: 150px;
+    height: 155px;
+    width: 100%;
 }
 
 .carousel-inner .properties {
