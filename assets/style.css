@@ -249,6 +249,12 @@ h2{font-size: 25px;}
     color: #000;
 }
 
+.pagination .active a,
+.pagination .active a:hover,
+.pagination .active a:visited {
+    color: #fff;
+}
+
 .properties .img-responsive {
     min-height: 150px;
 }

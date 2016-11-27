@@ -170,6 +170,11 @@ class Model_Notice extends Kohana_Model
             ->execute();
     }
 
+	/**
+	 * @param $id
+	 *
+	 * @return array
+	 */
     public function getNoticeImg($id)
 	{
 		return DB::select()
@@ -181,6 +186,9 @@ class Model_Notice extends Kohana_Model
 		;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function removeNoticeImg($id)
 	{
 		DB::update('notice_img')
@@ -193,6 +201,9 @@ class Model_Notice extends Kohana_Model
 		;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function removeNotice($id)
 	{
 		DB::update('notice')
@@ -418,6 +429,9 @@ class Model_Notice extends Kohana_Model
         }
     }
 
+	/**
+	 * @return array
+	 */
     public function findAllTypes()
 	{
 		return DB::select()
@@ -426,6 +440,68 @@ class Model_Notice extends Kohana_Model
 			->execute()
 			->as_array('id', 'name')
 		;
+	}
+
+	public function searchNotices($query = [])
+	{
+		$page = Arr::get($query, 'page', 1);
+		$limit = Arr::get($query, 'limit', 30);
+		$district = Arr::get($query, 'district');
+		$type = Arr::get($query, 'type');
+		$order = Arr::get($query, 'order');
+
+		$notices = [];
+
+		$query = DB::select('n.*', ['d.name', 'district_name'], ['t.name', 'type_name'])
+			->from(['notice', 'n'])
+			->join(['districts', 'd'], 'left')
+			->on('d.id', '=', 'n.district')
+			->join(['notice__type', 't'], 'left')
+			->on('t.id', '=', 'n.type')
+			->where('n.status_id', '=', 1)
+		;
+
+		$query = !empty($district) ? $query->and_where('d.id', '=', $district) : $query;
+		$query = !empty($type) ? $query->and_where('t.id', '=', $type) : $query;
+
+		$queryCount = clone $query;
+
+		$query = $query
+			->offset((($page - 1) * $limit))
+			->limit(($page * $limit))
+		;
+
+		switch ($order) {
+			case 'priceUp':
+				$query = $query->order_by('n.price', 'ASC');
+
+				break;
+			case 'priceDown':
+				$query = $query->order_by('n.price', 'DESC');
+
+				break;
+			default:
+				$query = $query->order_by('n.id', 'DESC');
+		}
+
+		$res = $query
+			->execute()
+			->as_array()
+		;
+
+		$i = 0;
+		$rowsCount = $queryCount->execute()->count();
+
+		foreach ($res as $row) {
+			$notices[$i] = $row;
+			$notices[$i]['imgs'] = $this->getNoticeImg($row['id']);
+			$notices[$i]['paginationCount'] = ceil($rowsCount / count($res));
+			$notices[$i]['count'] = $rowsCount;
+
+			$i++;
+		}
+
+		return $notices;
 	}
 }
 ?>

@@ -95,6 +95,9 @@ class Controller_Index extends Controller_Base
         $content = View::factory('search')
             ->set('districts', $contentModel->findAllDistricts())
             ->set('types', $noticeModel->findAllTypes())
+            ->set('searchedNotices', $noticeModel->searchNotices($this->request->query()))
+            ->set('popularNotices', $noticeModel->findPopular())
+            ->set('get', $this->request->query())
         ;
 
         $template

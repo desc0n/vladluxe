@@ -45,7 +45,7 @@ $noticeModel = Model::factory('Notice');
     <div class="container">
         <!-- banner -->
         <h3>Поиск</h3>
-        <form class="searchbar">
+        <form class="searchbar" action="/search">
             <div class="row">
                 <div class="col-lg-3 col-sm-12">
                     <div class="col-lg-4 col-sm-4 searchbar-title">
@@ -101,10 +101,6 @@ $noticeModel = Model::factory('Notice');
                     <a href="/notice/<?=$noticeData['id'];?>"><?=$noticeData['type_name'];?></a>
                 </h4>
                 <p class="price">Цена: <?=$noticeData['price'];?></p>
-<!--                <div class="listing-detail">-->
-<!--                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Спальная">5</span>-->
-<!--                    <span data-toggle="tooltip" data-placement="bottom" data-original-title="Гостинная">2</span>-->
-<!--                </div>-->
                 <a class="btn btn-primary" href="/notice/<?=$noticeData['id'];?>">Подробнее</a>
             </div>
             <?}?>

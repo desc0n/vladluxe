@@ -15,6 +15,16 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#selectPriceOrderSearchForm').change(function () {
+        $('#searchForm #order').val($(this).val());
+        $('#searchForm').submit();
+    });
+
+    $('#searchPagination a').click(function () {
+        $('#searchForm #page').val($(this).data('page'));
+        $('#searchForm').submit();
+    });
 });
 
 
