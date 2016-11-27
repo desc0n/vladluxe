@@ -21,7 +21,7 @@ $noticeModel = Model::factory('Notice');
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Район</label>
-                            <?=Form::select('district', array_merge([null => 'не выбрано'], $districts), Arr::get($get, 'district'), ['class' => 'form-control']);?>
+                            <?=Form::select('district', ([null => 'не выбрано'] + $districts), Arr::get($get, 'district'), ['class' => 'form-control']);?>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,7 @@ $noticeModel = Model::factory('Notice');
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Тип</label>
-                            <?=Form::select('type', array_merge([null => 'не выбрано'], $types), Arr::get($get, 'type'), ['class' => 'form-control']);?>
+                            <?=Form::select('type', ([null => 'не выбрано'] + $types), Arr::get($get, 'type'), ['class' => 'form-control']);?>
                         </div>
                     </div>
                     <div class="row">
