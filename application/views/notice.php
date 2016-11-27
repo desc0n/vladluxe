@@ -20,33 +20,18 @@ $noticeModel = Model::factory('Notice');
 
                 <div class="hot-properties hidden-xs">
                     <h4>Популярные</h4>
+                    <?foreach ($popularNotices as $popularNotice) {
+                        $noticeImgs = $noticeModel->getNoticeImg($popularNotice['id']);
+                        $imgSrc = count($noticeImgs) === 0 ? '/images/nopic.jpg' : '/public/img/thumb/' . $noticeImgs[0]['src'];?>
                     <div class="row">
-                        <div class="col-lg-4 col-sm-5"><img src="/images/properties/4.jpg" class="img-responsive img-circle" alt="properties"/></div>
+                        <div class="col-lg-4 col-sm-5">
+                            <img src="<?=$imgSrc;?>" class="img-responsive img-circle" alt="properties"/>
+                        </div>
                         <div class="col-lg-8 col-sm-7">
-                            <h5><a href="property-detail.php">Квартира на Русской, 1</a></h5>
-                            <p class="price">$300,000</p> </div>
+                            <h5><a href="/notice/<?=$popularNotice['id'];?>"><?=$popularNotice['name'];?></a></h5>
+                            <p class="price"><?=$popularNotice['price'];?> руб.</p> </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5"><img src="/images/properties/1.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                        <div class="col-lg-8 col-sm-7">
-                            <h5><a href="property-detail.php">Квартира на Русской, 2</a></h5>
-                            <p class="price">$300,000</p> </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5"><img src="/images/properties/3.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                        <div class="col-lg-8 col-sm-7">
-                            <h5><a href="property-detail.php">Квартира на Русской, 3</a></h5>
-                            <p class="price">$300,000</p> </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5"><img src="/images/properties/2.jpg" class="img-responsive img-circle" alt="properties"/></div>
-                        <div class="col-lg-8 col-sm-7">
-                            <h5><a href="property-detail.php">Квартира на Русской, 4</a></h5>
-                            <p class="price">$300,000</p> </div>
-                    </div>
-
+                    <?}?>
                 </div>
             </div>
             <div class="col-lg-9 col-sm-8 ">

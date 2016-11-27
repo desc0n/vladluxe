@@ -260,13 +260,18 @@ class Model_Notice extends Kohana_Model
 			->execute();
 	}
 
-	public function findLastSeeItems()
+	/**
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	public function findPopular($limit = 4)
 	{
 		$data = [];
 
 		$views = DB::select()
 			->from('notice__views')
-			->limit(4)
+			->limit($limit)
 			->order_by('id', 'DESC')
 			->group_by('notice_id')
 			->execute()

@@ -22,6 +22,7 @@ class Controller_Notice extends Controller_Base
 
 		$template->content=View::factory('notice')
 			->set('notice', $notice)
+			->set('popularNotices', $noticeModel->findPopular())
 			->set('id', $id)
 		;
 

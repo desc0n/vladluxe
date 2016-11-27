@@ -45,7 +45,7 @@ $noticeModel = Model::factory('Notice');
     <div class="container">
         <!-- banner -->
         <h3>Поиск</h3>
-        <div class="searchbar">
+        <form class="searchbar">
             <div class="row">
                 <div class="col-lg-3 col-sm-12">
                     <div class="col-lg-4 col-sm-4 searchbar-title">
@@ -68,20 +68,20 @@ $noticeModel = Model::factory('Notice');
                         Цена от
                     </div>
                     <div class="col-lg-4 col-sm-4">
-                        <input type="text" class="form-control" placeholder="0">
+                        <input type="text" class="form-control" name="price_from" placeholder="0">
                     </div>
                     <div class="col-lg-1 col-sm-1 searchbar-title">
                         до
                     </div>
                     <div class="col-lg-4 col-sm-4">
-                        <input type="text" class="form-control" placeholder="0">
+                        <input type="text" class="form-control" name="price_to" placeholder="0">
                     </div>
                 </div>
                 <div class="col-lg-2 col-sm-12">
                     <button class="btn btn-success"  onclick="window.location.href='/search'">Найти</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <!-- banner -->

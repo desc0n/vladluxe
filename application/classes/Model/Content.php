@@ -16,7 +16,7 @@ class Model_Content extends Kohana_Model
         return View::factory('template')
             ->set('menu', $this->getMenu())
             ->set('categories', $this->getCategory())
-            ->set('lastSeeItems', $noticeModel->findLastSeeItems())
+            ->set('lastSeeItems', $noticeModel->findPopular())
             ->set('noticeTypes', $noticeModel->findAllTypes())
             ;
     }
