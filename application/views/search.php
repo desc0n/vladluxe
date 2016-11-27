@@ -21,7 +21,7 @@ $noticeModel = Model::factory('Notice');
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Район</label>
-                            <?=Form::select('district', $districts, Arr::get($get, 'district'), ['class' => 'form-control']);?>
+                            <?=Form::select('district', array_merge([null => 'не выбрано'], $districts), Arr::get($get, 'district'), ['class' => 'form-control']);?>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,19 @@ $noticeModel = Model::factory('Notice');
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Тип</label>
-                            <?=Form::select('type', $types, Arr::get($get, 'type'), ['class' => 'form-control']);?>
+                            <?=Form::select('type', array_merge([null => 'не выбрано'], $types), Arr::get($get, 'type'), ['class' => 'form-control']);?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Цена от</label>
+                            <input type="text" class="form-control" name="price_from" placeholder="Цена от" value="<?=Arr::get($get, 'price_from');?>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Цена до</label>
+                            <input type="text" class="form-control" name="price_to" placeholder="Цена до" value="<?=Arr::get($get, 'price_to');?>">
                         </div>
                     </div>
                     <input type="hidden" name="order" id="order" value="<?=Arr::get($get, 'order');?>">
@@ -67,7 +79,7 @@ $noticeModel = Model::factory('Notice');
                         </select>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row search-result">
                     <?foreach ($searchedNotices as $searchedNotice) {
                         $noticeImgs = $noticeModel->getNoticeImg(Arr::get($searchedNotice,'id'));?>
                     <div class="col-lg-4 col-sm-6">

@@ -260,6 +260,11 @@ h2{font-size: 25px;}
     width: 100%;
 }
 
+.search-result .properties .img-responsive {
+    height: 185px;
+    width: 100%;
+}
+
 .carousel-inner .properties {
     max-height: 375px;
     width: 100%;

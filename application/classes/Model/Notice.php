@@ -451,6 +451,8 @@ class Model_Notice extends Kohana_Model
 		$limit = Arr::get($query, 'limit', 30);
 		$district = Arr::get($query, 'district');
 		$type = Arr::get($query, 'type');
+		$priceFrom = Arr::get($query, 'price_from', 0);
+		$priceTo = Arr::get($query, 'price_to', 0);
 		$order = Arr::get($query, 'order');
 
 		$notices = [];
@@ -462,10 +464,12 @@ class Model_Notice extends Kohana_Model
 			->join(['notice__type', 't'], 'left')
 			->on('t.id', '=', 'n.type')
 			->where('n.status_id', '=', 1)
+			->and_where('n.price', '>=', $priceFrom)
 		;
 
 		$query = !empty($district) ? $query->and_where('d.id', '=', $district) : $query;
 		$query = !empty($type) ? $query->and_where('t.id', '=', $type) : $query;
+		$query = !empty($priceTo) ? $query->and_where('n.price', '<=', $priceTo) : $query;
 
 		$queryCount = clone $query;
 
