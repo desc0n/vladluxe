@@ -291,7 +291,10 @@ class Model_Notice extends Kohana_Model
 
 		foreach ($views as $view) {
 			$noticeData = $this->getNotice(['id' =>$view['notice_id']]);
-			$data[] = Arr::get($noticeData, 0, []);
+
+			if (!empty($noticeData)) {
+				$data[] = Arr::get($noticeData, 0, []);
+			}
 		}
 
 		return $data;
