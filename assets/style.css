@@ -63,7 +63,7 @@ table{background-color: #fff;}
 .listing-detail span:hover{background: #b80f35;}
 
 
-.status.sold{background: rgba(184, 15, 53, 0.8);}
+.status.sold{background: rgba(184, 15, 53, 0.8);padding-right: 15px!important;}
 .status.new{background: rgba(40, 92, 139, 0.8);}
 
 .recommended{position: relative;}
