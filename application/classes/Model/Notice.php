@@ -12,94 +12,6 @@ class Model_Notice extends Kohana_Model
     }
 
 	/**
-	 * @param array $params
-	 *
-	 * @return array
-	 */
-	public function getNotice($params = [])
-	{
-		$name = Arr::get($params, 'name');
-		$page = Arr::get($params, 'page', 1);
-
-		$rowLimit = Arr::get($params, 'limit', 0);
-		$startLimit = ($page - 1) * $rowLimit;
-		$limit = empty($rowLimit) ? '' : "limit $startLimit, $rowLimit";
-		
-		$price = Arr::get($params, 'price', 0);
-		$priceSql = empty($price) ? '' : ' and `n`.`price` <= :price ';
-		$priceCountSql = empty($price) ? '' : ' and `nt`.`price` <= :price ';
-		$names =  !empty($name) ? explode(' ', $name) : [];
-		$nameSql = '';
-		$nameCountSql = '';
-		
-		foreach ($names as $name) {
-			$nameSql .= " and `n`.`name` like '%$name%' ";
-			$nameCountSql .= " and `nt`.`name` like '%$name%' ";
-		}
-		
-		$sort = Arr::get($params, 'sort', 'sort');
-		$order = Arr::get($params, 'order', 'asc');
-		
-		$id = Arr::get($params, 'id', 0);
-		$districtId = Arr::get($params, 'district_id', 0);
-		
-		if (!empty($id)) {
-			$sql = "select `n`.*,
-            (select `c`.`name` from `districts` `c` where `c`.`id` = `n`.`district`) as `district_name`
-            from `notice` `n`
-            where `n`.`id` = :id
-            and `n`.`status_id` = 1
-            LIMIT 0,1";
-		} else if (!empty($districtId)) {
-			$sql = "select `n`.*,
-			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`district` = :district_id and `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
-			(select `c`.`name` from `districts` `c` where `c`.`id` = `n`.`district`) as `district_name`
-			from `notice` `n`
-			where (
-			    `n`.`district` = :district_id
-			    or `n`.`district` in (select `c`.`id` from `districst` `c` where `c`.`parent_id` = :district_id)
-            )
-			and `n`.`status_id` = 1
-			$priceSql
-			$nameSql
-			order by `$sort` $order
-			$limit";
-		} else {
-			$sql = "select `n`.*,
-			(select ceil(count(`nt`.`id`) / $rowLimit) from `notice` `nt` where `nt`.`status_id` = 1 $priceCountSql $nameCountSql) as `page_count`,
-			(select `c`.`name` from `district` `c` where `c`.`id` = `n`.`district`) as `district_name`
-			from `notice` `n`
-			where `n`.`status_id` = 1
-			$priceSql
-			$nameSql
-			order by `$sort` $order
-			$limit";
-		}
-
-		$noticeData = [];
-		$i = 0;
-
-		$res = DB::query(Database::SELECT, $sql)
-			->parameters([
-				':id' => $id,
-				':district_id' => $districtId,
-				':price' => $price
-			])
-			->execute()
-			->as_array()
-		;
-
-		foreach ($res as $row) {
-			$noticeData[$i] = $row;
-			$noticeData[$i]['imgs'] = $this->getNoticeImg($row['id']);
-			$noticeData[$i]['files'] = $this->getNoticeFile($row);
-			$i++;
-		}
-
-		return $noticeData;
-	}
-
-	/**
 	 * @param int $id
 	 *
 	 * @return array
@@ -290,7 +202,7 @@ class Model_Notice extends Kohana_Model
 		;
 
 		foreach ($views as $view) {
-			$noticeData = $this->getNotice(['id' =>$view['notice_id']]);
+			$noticeData = $this->findById($view['notice_id']);
 
 			if (!empty($noticeData)) {
 				$data[] = Arr::get($noticeData, 0, []);
@@ -445,6 +357,10 @@ class Model_Notice extends Kohana_Model
 		;
 	}
 
+    /**
+     * @param array $query
+     * @return array
+     */
 	public function searchNotices($query = [])
 	{
 		$page = Arr::get($query, 'page', 1);
@@ -510,5 +426,52 @@ class Model_Notice extends Kohana_Model
 
 		return $notices;
 	}
+
+	public function findNoticesIndexTop()
+	{
+		$notices = [];
+
+        $res = DB::select('n.*', ['d.name', 'district_name'], ['t.name', 'type_name'])
+			->from(['notice', 'n'])
+			->join(['districts', 'd'], 'left')
+			->on('d.id', '=', 'n.district')
+			->join(['notice__type', 't'], 'left')
+			->on('t.id', '=', 'n.type')
+			->where('n.status_id', '=', 1)
+			->and_where('n.index_top', '=', 1)
+			->execute()
+			->as_array()
+		;
+
+		$i = 0;
+
+		foreach ($res as $row) {
+			$notices[$i] = $row;
+            $noticeImgs = $this->getNoticeImg($row['id']);
+			$notices[$i]['imgs'] = $imgSrc = count($noticeImgs) === 0 ? [0 => ['src' => 'nopic.jpg']] : $noticeImgs;
+
+			$i++;
+		}
+
+		return $notices;
+	}
+
+	public function showOnIndexTop($id)
+    {
+        DB::update('notice')
+            ->set(['index_top' => 1])
+            ->where('id', '=', $id)
+            ->execute()
+        ;
+    }
+
+	public function hideOnIndexTop($id)
+    {
+        DB::update('notice')
+            ->set(['index_top' => 0])
+            ->where('id', '=', $id)
+            ->execute()
+        ;
+    }
 }
 ?>

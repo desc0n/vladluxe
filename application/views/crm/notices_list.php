@@ -14,7 +14,7 @@
                     <th>Адрес</th>
                     <th>Название</th>
                     <th>Стоимость</th>
-                    <th>Действия</th>
+                    <th class="text-center">Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,6 +29,15 @@
                         <td><?=$notice['name'];?></td>
                         <td><?=$notice['price'];?></td>
                         <td class="text-center">
+                            <?if((int)$notice['index_top'] === 0) {?>
+                            <span class="change-index-top-btn">
+                                <button title="Отобразить в верхней части главной страницы" class="btn btn-success" onclick="showOnIndexTop(<?=$notice['id'];?>);"><i class="fa fa-caret-square-o-up fa-fw"></i></button>
+                            </span>
+                            <?} else {?>
+                            <span class="change-index-top-btn">
+                                <button title="Не отображать в верхней части главной страницы" class="btn btn-danger change-index-top-btn" onclick="hideOnIndexTop(<?=$notice['id'];?>);"><i class="fa fa-caret-square-o-up fa-fw"></i></button>
+                            </span>
+                            <?}?>
                             <a title="Редактировать объявление" class="btn btn-default" href="/crm/redact_notice/<?=$notice['id'];?>"><i class="fa fa-pencil fa-fw"></i></a>
                             <button title="Удалить объявление" class="btn btn-danger" onclick="removeNotice(<?=$notice['id'];?>);"><i class="fa fa-remove fa-fw"></i></button>
                         </td>

@@ -74,7 +74,7 @@ $noticeModel = Model::factory('Notice');
 
                         </div>
                         <div>
-                            <h4><span class="glyphicon glyphicon-map-marker"></span> Местоположения </h4>
+                            <h4><span class="glyphicon glyphicon-map-marker"></span> Местоположение </h4>
                             <div class="well">
                                 <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&source=s_q&hl=ru&geocode=&q=Владивосток+<?=(empty($notice['street']) ? null : $notice['street'] . '+');?><?=$notice['house'];?>&aq=0&oq=pulch&ie=UTF8&hq=&hnear=Владивосток+Маковского+100&t=m&z=14&output=embed"></iframe>
                             </div>

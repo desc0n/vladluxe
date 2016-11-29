@@ -29,4 +29,24 @@ class Controller_Ajax extends Controller
 
         $this->response->body(json_encode(['result' =>'success']));
     }
+
+    public function action_show_on_index_top()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        $noticeModel->showOnIndexTop($this->request->post('id'));
+
+        $this->response->body(json_encode(['result' =>'success']));
+    }
+
+    public function action_hide_on_index_top()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        $noticeModel->hideOnIndexTop($this->request->post('id'));
+
+        $this->response->body(json_encode(['result' =>'success']));
+    }
 }

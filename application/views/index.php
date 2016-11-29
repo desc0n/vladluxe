@@ -4,32 +4,28 @@ $noticeModel = Model::factory('Notice');
 ?>
 <div id="myCarousel" class="carousel slide hidden-xs hidden-md" data-interval="3000" data-ride="">
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <?
+        $slideActive = null;
+
+        foreach ($noticeModel->findNoticesIndexTop() as $noticeData) {
+            $slideActive = $slideActive === null ? 'active' : '';?>
+        <li data-target="#myCarousel" data-slide-to="0" class="<?=$slideActive;?>"></li>
+        <?}?>
     </ol>
     <div class="carousel-inner">
-        <div class="active item" style="background-image: url('/images/slider/1.jpg');">
+        <?
+        $itemActive = null;
+
+        foreach ($noticeModel->findNoticesIndexTop() as $noticeData) {
+            $itemActive = $itemActive === null ? 'active' : '';?>
+        <div class="<?=$itemActive;?> item" style="background-image: url('/public/img/original/<?=$noticeData['imgs'][0]['src'];?>');">
             <div class="carousel-caption row">
-                <h2>Маковского 120</h2>
-                <h3>2 спальные комнаты и 1 столовая на продажу</h3>
-                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
+                <h2><?=(empty($noticeData['street']) ? null : $noticeData['street'] . ' ');?><?=$noticeData['house'];?></h2>
+                <h3><?=$noticeData['name'];?></h3>
+                <p class="col-lg-8"><a class="btn btn-success"  href='/notice/<?=$noticeData['id'];?>'>Подробнее</a></p>
             </div>
         </div>
-        <div class="item" style="background-image: url('/images/slider/2.jpg');">
-            <div class="carousel-caption row">
-                <h2>Шевченко 10</h2>
-                <h3>3 спальные комнаты и 1 столовая в аренду</h3>
-                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
-            </div>
-        </div>
-        <div class="item" style="background-image: url('/images/slider/3.jpg');">
-            <div class="carousel-caption row">
-                <h2>Зеленая 10</h2>
-                <h3>4 спальные комнаты и 2 столовых в аренду</h3>
-                <p class="col-lg-8"><button class="btn btn-success"  onclick="window.location.href='/search'">Подробнее</button></p>
-            </div>
-        </div>
+        <?}?>
     </div>
     <!-- Навигация для карусели -->
     <!-- Кнопка, осуществляющая переход на предыдущий слайд с помощью атрибута data-slide="prev" -->
