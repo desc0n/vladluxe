@@ -85,7 +85,7 @@ $noticeModel = Model::factory('Notice');
     <div class="properties-listing spacer">
         <a href="/search" class="viewall">Все предложения</a>
         <div id="owl-example" class="owl-carousel">
-            <?foreach ($noticeModel->getList(1, 10) as $noticeData) {
+            <?foreach ($noticeModel->findNoticesIndexBottom() as $noticeData) {
                 $noticeImgs = $noticeModel->getNoticeImg(Arr::get($noticeData,'id'));?>
             <div class="properties">
                 <div class="image-holder">

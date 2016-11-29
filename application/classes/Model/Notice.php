@@ -427,6 +427,9 @@ class Model_Notice extends Kohana_Model
 		return $notices;
 	}
 
+    /**
+     * @return array
+     */
 	public function findNoticesIndexTop()
 	{
 		$notices = [];
@@ -456,6 +459,9 @@ class Model_Notice extends Kohana_Model
 		return $notices;
 	}
 
+    /**
+     * @param $id
+     */
 	public function showOnIndexTop($id)
     {
         DB::update('notice')
@@ -465,10 +471,69 @@ class Model_Notice extends Kohana_Model
         ;
     }
 
+    /**
+     * @param $id
+     */
 	public function hideOnIndexTop($id)
     {
         DB::update('notice')
             ->set(['index_top' => 0])
+            ->where('id', '=', $id)
+            ->execute()
+        ;
+    }
+
+    /**
+     * @return array
+     */
+	public function findNoticesIndexBottom()
+	{
+		$notices = [];
+
+        $res = DB::select('n.*', ['d.name', 'district_name'], ['t.name', 'type_name'])
+			->from(['notice', 'n'])
+			->join(['districts', 'd'], 'left')
+			->on('d.id', '=', 'n.district')
+			->join(['notice__type', 't'], 'left')
+			->on('t.id', '=', 'n.type')
+			->where('n.status_id', '=', 1)
+			->and_where('n.index_bottom', '=', 1)
+			->execute()
+			->as_array()
+		;
+
+		$i = 0;
+
+		foreach ($res as $row) {
+			$notices[$i] = $row;
+            $noticeImgs = $this->getNoticeImg($row['id']);
+			$notices[$i]['imgs'] = $imgSrc = count($noticeImgs) === 0 ? [0 => ['src' => 'nopic.jpg']] : $noticeImgs;
+
+			$i++;
+		}
+
+		return $notices;
+	}
+
+    /**
+     * @param $id
+     */
+	public function showOnIndexBottom($id)
+    {
+        DB::update('notice')
+            ->set(['index_bottom' => 1])
+            ->where('id', '=', $id)
+            ->execute()
+        ;
+    }
+
+    /**
+     * @param $id
+     */
+	public function hideOnIndexBottom($id)
+    {
+        DB::update('notice')
+            ->set(['index_bottom' => 0])
             ->where('id', '=', $id)
             ->execute()
         ;
