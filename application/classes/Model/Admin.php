@@ -236,12 +236,11 @@ class Model_Admin extends Kohana_Model
 		imagedestroy($im);
 	}
 
-	public function setPage($params = [])
+	public function setPage($id, $content)
 	{
-		$id = Arr::get($params, 'redactpage', 0);
 		DB::update('pages')
 			->set([
-				'content' => Arr::get($params, 'text')
+				'content' => $content
 			])
 			->where('id', '=', $id)
 			->execute()

@@ -55,7 +55,7 @@
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li>
                                 <?foreach ($noticeTypes as $id => $type) {?>
-                                <a href="#"><?=$type;?></a>
+                                <a href="/search?type=<?=$id;?>"><?=$type;?></a>
                                 <?}?>
                             </li>
                         </ul>
@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Вакансии</a>
+                        <a href="/page/vacancies">Вакансии</a>
                     </li>
                     <li>
                         <a href="/contact">Контакты</a>

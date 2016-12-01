@@ -205,7 +205,7 @@ class Model_Notice extends Kohana_Model
 			$noticeData = $this->findById($view['notice_id']);
 
 			if (!empty($noticeData)) {
-				$data[] = Arr::get($noticeData, 0, []);
+				$data[] = $noticeData;
 			}
 		}
 

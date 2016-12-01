@@ -18,6 +18,7 @@
     <script src="/assets/bootstrap/js/bootstrap3-typeahead.js"></script>
     <script src="/assets/admin/js/scripts.js"></script>
     <script src="/assets/admin/js/holder.js"></script>
+    <script src="/assets/admin/js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -49,6 +50,9 @@
                     </li>
                     <li>
                         <a href="/crm/add_notice"><i class="fa fa-file fa-fw"></i> Добавить объявление</a>
+                    </li>
+                    <li>
+                        <a href="/crm/pages_list"><i class="fa fa-pencil-square-o fa-fw"></i> Редактировать страницу</a>
                     </li>
                 </ul>
             </div>

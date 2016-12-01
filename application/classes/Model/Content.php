@@ -149,6 +149,22 @@ class Model_Content extends Kohana_Model
         ;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return false|array
+     */
+    public function findPageById($id)
+    {
+        return DB::select()
+            ->from('pages')
+            ->where('id', '=', $id)
+            ->limit(1)
+            ->execute()
+            ->current()
+        ;
+    }
+
     public function findAllDistricts()
     {
         return DB::select()

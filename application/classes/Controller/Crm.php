@@ -188,4 +188,49 @@ class Controller_Crm extends Controller_Base
 
         $this->response->body($template);
     }
+
+    public function action_pages_list()
+    {
+        /** @var $adminModel Model_Admin */
+        $adminModel = Model::factory('Admin');
+
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $template = $this->getBaseTemplate();
+
+        if (isset($_POST['redactpage'])) {
+            $adminModel->setPage($_POST);
+            HTTP::redirect($this->request->referrer());
+        }
+
+        $template->content = View::factory('crm/pages_list')
+            ->set('pages', $contentModel->getPages())
+        ;
+
+        $this->response->body($template);
+    }
+
+    public function action_redact_page()
+    {
+        /** @var $adminModel Model_Admin */
+        $adminModel = Model::factory('Admin');
+
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $template = $this->getBaseTemplate();
+
+        if (isset($_POST['redact_page'])) {
+            $adminModel->setPage($this->request->query('id'), $this->request->post('content'));
+
+            HTTP::redirect($this->request->referrer());
+        }
+
+        $template->content = View::factory('crm/redact_page')
+            ->set('pageData', $contentModel->findPageById((int)$this->request->query('id')))
+        ;
+
+        $this->response->body($template);
+    }
 }
