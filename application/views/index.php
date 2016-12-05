@@ -97,6 +97,10 @@ $noticeModel = Model::factory('Notice');
                     <a href="/notice/<?=$noticeData['id'];?>"><?=$noticeData['type_name'];?></a>
                 </h4>
                 <p class="price">Цена: <?=$noticeData['price'];?></p>
+                <div class="listing-detail">
+                    <p><?=$noticeData['district_name'];?></p>
+                    <p><?=(empty($noticeData['street']) ? null : $noticeData['street'] . ' ');?><?=$noticeData['house'];?></p>
+                </div>
                 <a class="btn btn-primary" href="/notice/<?=$noticeData['id'];?>">Подробнее</a>
             </div>
             <?}?>
