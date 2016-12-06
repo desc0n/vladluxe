@@ -86,18 +86,19 @@ $noticeModel = Model::factory('Notice');
                             <div class="property-info">
                                 <p class="price"><?=$notice['price'];?> руб.</p>
                                 <p class="area"><span class="glyphicon glyphicon-map-marker"></span><?=(empty($notice['street']) ? null : $notice['street'] . ' ');?><?=$notice['house'];?></p>
+                                <h4>2-666-156</h4>
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-6 ">
-                            <div class="enquiry">
-                                <h6><span class="glyphicon glyphicon-envelope"></span> Отправить запрос</h6>
-                                <form role="form">
-                                    <input type="text" class="form-control" placeholder="Имя"/>
-                                    <input type="text" class="form-control" placeholder="E-mail"/>
-                                    <input type="text" class="form-control" placeholder="Номер телефона"/>
-                                    <button type="submit" class="btn btn-primary" name="Submit">Отправить</button>
-                                </form>
-                            </div>
+<!--                            <div class="enquiry">-->
+<!--                                <h6><span class="glyphicon glyphicon-envelope"></span> Отправить запрос</h6>-->
+<!--                                <form role="form">-->
+<!--                                    <input type="text" class="form-control" placeholder="Имя"/>-->
+<!--                                    <input type="text" class="form-control" placeholder="E-mail"/>-->
+<!--                                    <input type="text" class="form-control" placeholder="Номер телефона"/>-->
+<!--                                    <button type="submit" class="btn btn-primary" name="Submit">Отправить</button>-->
+<!--                                </form>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>

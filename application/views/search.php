@@ -87,7 +87,6 @@ $noticeModel = Model::factory('Notice');
                             <div class="image-holder">
                                 <?$imgSrc = count($noticeImgs) === 0 ? '/images/nopic.jpg' : '/public/img/thumb/' . $noticeImgs[0]['src'];?>
                                 <img src="<?=$imgSrc;?>" class="img-responsive" alt="properties">
-                                <div class="status sold">Сдается</div>
                             </div>
                             <h4>
                                 <a href="/notice/<?=$searchedNotice['id'];?>"><?=$searchedNotice['type_name'];?></a>
@@ -96,6 +95,7 @@ $noticeModel = Model::factory('Notice');
                             <div class="listing-detail">
                                 <p><?=$searchedNotice['district_name'];?></p>
                                 <p><?=(empty($searchedNotice['street']) ? null : $searchedNotice['street'] . ' ');?><?=$searchedNotice['house'];?></p>
+                                <p>2-666-156</p>
                             </div>
                             <a class="btn btn-primary" href="/notice/<?=$searchedNotice['id'];?>">Подробнее</a>
                         </div>

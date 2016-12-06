@@ -92,7 +92,7 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-3">
+            <div class="col-lg-4 col-sm-4">
                 <h4>Информация</h4>
                 <ul class="row">
                     <li class="col-lg-12 col-sm-12 col-xs-3">
@@ -103,16 +103,16 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-3 col-sm-3">
-                <h4>Сообщение</h4>
-                <p>Получать уведомление о новинках</p>
-                <form class="form-inline" role="form">
-                    <input type="text" placeholder="E-mail" class="form-control">
-                    <button class="btn btn-success" type="button">Отправить</button>
-                </form>
-            </div>
+<!--            <div class="col-lg-3 col-sm-3">-->
+<!--                <h4>Сообщение</h4>-->
+<!--                <p>Получать уведомление о новинках</p>-->
+<!--                <form class="form-inline" role="form">-->
+<!--                    <input type="text" placeholder="E-mail" class="form-control">-->
+<!--                    <button class="btn btn-success" type="button">Отправить</button>-->
+<!--                </form>-->
+<!--            </div>-->
 
-            <div class="col-lg-3 col-sm-3">
+            <div class="col-lg-4 col-sm-4">
                 <h4>Мы в соцсетях</h4>
                 <a href="#">
                     <img src="/images/facebook.png" alt="facebook">
@@ -128,7 +128,7 @@
                 </a>
             </div>
 
-            <div class="col-lg-3 col-sm-3">
+            <div class="col-lg-4 col-sm-4">
                 <h4>Как связаться</h4>
                 <p>
                     <b>Агенство недвижимости "Люкс"</b>
