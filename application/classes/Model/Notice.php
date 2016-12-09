@@ -567,7 +567,7 @@ class Model_Notice extends Kohana_Model
 		$body .= "Content-Transfer-Encoding: quoted-printable\n\n";
 		$body .= "$message";
 
-		if (mail('descon@bk.ru', 'Запрос на объявление с сайта', $body, $header)) {
+		if (mail('2903033@mail.ru', 'Запрос на объявление с сайта', $body, $header)) {
 			return 'success';
 		}
 
