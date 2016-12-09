@@ -53,7 +53,7 @@ $noticeModel = Model::factory('Notice');
                 </div>
                 <div class="col-lg-3 col-sm-12">
                     <div class="col-lg-4 col-sm-4 searchbar-title">
-                        Улица
+                        Тип
                     </div>
                     <div class="col-lg-8 col-sm-8">
                         <?=Form::select('type', ([null => 'не выбрано'] + $types), null, ['class' => 'form-control']);?>
