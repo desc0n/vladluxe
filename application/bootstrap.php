@@ -139,19 +139,19 @@ Route::set('contact', 'contact',[
         'controller' => 'index',
         'action'     => 'contact',
     ])
-	->defaults(array(
+	->defaults([
 		'controller' => 'index',
 		'action'     => 'contact',
-	));
+	]);
 
-Route::set('reviews', 'reviews',[
+Route::set('rent_apartment', 'rent_apartment',[
         'controller' => 'index',
-        'action'     => 'reviews',
+        'action'     => 'rent_apartment',
     ])
-	->defaults(array(
+	->defaults([
 		'controller' => 'index',
-		'action'     => 'reviews',
-	));
+		'action'     => 'rent_apartment',
+	]);
 
 Route::set('search', 'search',[
         'controller' => 'index',
@@ -169,7 +169,7 @@ Route::set('notice', 'notice/<id>',['id' =>'[0-9]+'])
 	]);
 
 Route::set('default', '(<controller>(/<action>(/<id>)))',array('id' =>'[0-9a-z_]+'))
-	->defaults(array(
+	->defaults([
 		'controller' => 'index',
 		'action'     => 'index',
-	));
+	]);

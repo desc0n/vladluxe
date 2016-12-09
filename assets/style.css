@@ -274,3 +274,13 @@ h2{font-size: 25px;}
     max-height: 375px;
     width: 100%;
 }
+.pop-over,
+.pop-over:hover,
+.pop-over:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+#errorModal .alert {
+    margin-bottom: 0;
+}

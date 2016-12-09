@@ -5,7 +5,7 @@ $noticeModel = Model::factory('Notice');
 <!-- banner -->
 <div class="inside-banner">
     <div class="container">
-        <span class="pull-right"><a href="/">Главная</a> / Аренда</span>
+        <span class="pull-right"><a href="/">Главная</a> / Поиск</span>
         <h2>Аренда</h2>
     </div>
 </div>
@@ -30,7 +30,7 @@ $noticeModel = Model::factory('Notice');
                             <input type="text" class="form-control" name="street" id="street" placeholder="Улица" value="<?=Arr::get($get, 'street');?>">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row <?=((int)Arr::get($get, 'type') === 7 ? 'hide' : null);?>">
                         <div class="col-lg-12">
                             <label>Тип</label>
                             <?=Form::select('type', ([null => 'не выбрано'] + $types), Arr::get($get, 'type'), ['class' => 'form-control']);?>

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Агенство недвижимости Люкс</title>
+    <title>Агенство недвижимости Люкс. <?=(isset($title) ? $title : null);?></title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/png" href="/images/fav.png">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="/assets/style.css"/>
+    <link rel="stylesheet" href="/assets/bootstrap/css/font-awesome.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/bootstrap/js/bootstrap3-typeahead.js"></script>
-    <script src="/assets/script.js"></script>
+    <script src="/assets/script.js?v=2"></script>
     <!-- Owl stylesheet -->
     <link rel="stylesheet" href="/assets/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/assets/owl-carousel/owl.theme.css">
@@ -47,35 +48,29 @@
                     <img src="/images/logo.png" alt="">
                 </a>
                 <ul class="nav navbar-nav navbar-right header-navbar">
-                    <li class="active">
+                    <li <?=($rootPage === 'index' ? 'class="active"' : null);?>>
                         <a href="/">Главная</a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown <?=($rootPage === 'search' && (int)Arr::get($get, 'type') !== 7 ? 'active' : null);?>">
                         <a data-toggle="dropdown" href="#">Аренда квартир</a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li>
-                                <?foreach ($noticeTypes as $id => $type) {?>
+                                <?foreach ($noticeTopMenuTypes as $id => $type) {?>
                                 <a href="/search?type=<?=$id;?>"><?=$type;?></a>
                                 <?}?>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Сдать квартиру</a>
+                    <li <?=($rootPage === 'rent_apartment' ? 'class="active"' : null);?>>
+                        <a href="/rent_apartment">Сдать квартиру</a>
                     </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" href="#">Аренда домов</a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li>
-                                <a href="#">Частный дом</a>
-                                <a href="#">Котедж</a>
-                            </li>
-                        </ul>
+                    <li <?=($rootPage === 'search' && (int)Arr::get($get, 'type') === 7  ? 'class="active"' : null);?>>
+                        <a href="/search?type=7">Аренда домов</a>
                     </li>
-                    <li>
+                    <li <?=($rootPage === 'vacancies' ? 'class="active"' : null);?>>
                         <a href="/page/vacancies">Вакансии</a>
                     </li>
-                    <li>
+                    <li <?=($rootPage === 'contact' ? 'class="active"' : null);?>>
                         <a href="/contact">Контакты</a>
                     </li>
                 </ul>
@@ -136,9 +131,9 @@
                     <span class="glyphicon glyphicon-map-marker"></span>
                         Владивосток, ул. Ад. Юмашева, 35/1 <br>
                     <span class="glyphicon glyphicon-envelope"></span>
-                        hello@bootstrapreal.com<br>
-                    <span class="glyphicon glyphicon-earphone">/span>
-                        (123) 456-7890
+                        2903033@mail.ru<br>
+                    <span class="glyphicon glyphicon-earphone"></span>
+                        (423) 2-666-156
                 </p>
             </div>
         </div>

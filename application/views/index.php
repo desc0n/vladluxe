@@ -48,7 +48,7 @@ $noticeModel = Model::factory('Notice');
                         Район
                     </div>
                     <div class="col-lg-8 col-sm-8">
-                        <?=Form::select('district', $districts, null, ['class' => 'form-control']);?>
+                        <?=Form::select('district', ([null => 'не выбрано'] + $districts), null, ['class' => 'form-control']);?>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
@@ -56,7 +56,7 @@ $noticeModel = Model::factory('Notice');
                         Улица
                     </div>
                     <div class="col-lg-8 col-sm-8">
-                        <input type="text" class="form-control" placeholder="Введите улицу" name="street" autocomplete="off">
+                        <?=Form::select('type', ([null => 'не выбрано'] + $types), null, ['class' => 'form-control']);?>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12">

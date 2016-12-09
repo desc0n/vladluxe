@@ -69,4 +69,14 @@ class Controller_Ajax extends Controller
 
         $this->response->body(json_encode(['result' =>'success']));
     }
+
+    public function action_send_notice_query()
+    {
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
+        $result = $noticeModel->sendNoticeQuery($this->request->post());
+
+        $this->response->body(json_encode(['result' => $result]));
+    }
 }

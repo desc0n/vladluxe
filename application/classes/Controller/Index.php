@@ -7,15 +7,24 @@ class Controller_Index extends Controller_Base
         /** @var $contentModel Model_Content */
         $contentModel = Model::factory('Content');
 
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
+
         View::set_global('title', 'Главная');
         View::set_global('rootPage', 'main');
 
 		$template = $contentModel->getBaseTemplate();
 
         $template->content = View::factory('index')
-            ->set('get', $_GET)
-            ->set('post', $_POST)
             ->set('districts', $contentModel->findAllDistricts())
+            ->set('types', $noticeModel->findAllTypes())
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
+        ;
+
+        $template
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
         ;
 
 		$this->response->body($template);
@@ -36,7 +45,12 @@ class Controller_Index extends Controller_Base
         
 		$template->content = View::factory('page')
 			->set('pageData', $pageData)
-			->set('get', $_GET)
+            ->set('get', $this->request->query())
+        ;
+
+        $template
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
         ;
         
 		$this->response->body($template);
@@ -53,29 +67,41 @@ class Controller_Index extends Controller_Base
         $template = $contentModel->getBaseTemplate();
 
 		$template->content = View::factory('contact')
-			->set('get', $_GET)
+            ->set('get', $this->request->query())
+        ;
+
+        $template
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
         ;
 
         $this->response->body($template);
 	}
 
-    public function action_reviews()
+    public function action_rent_apartment()
     {
-        /**
-         * @var $adminModel Model_Admin
-         */
-        $adminModel = Model::factory('Admin');
+        /** @var $noticeModel Model_Notice */
+        $noticeModel = Model::factory('Notice');
 
-        View::set_global('title', 'Отзывы');
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
 
-        $template = View::factory("template");
+        View::set_global('title', 'Сдать квартиру');
+        View::set_global('rootPage', 'rent_apartment');
 
-        $content = View::factory('reviews')
-            ->set('reviewsData', $adminModel->findReviews());
+        $template = $contentModel->getBaseTemplate();
+
+        $template->content = View::factory('rent_apartment')
+            ->set('get', $this->request->query())
+            ->set('districts', $contentModel->findAllDistricts())
+            ->set('types', $noticeModel->findAllTypes())
+        ;
 
         $template
-            ->set('content', $content)
-            ->set('page', 'reviews');
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
+        ;
+
         $this->response->body($template);
     }
 
@@ -102,7 +128,8 @@ class Controller_Index extends Controller_Base
 
         $template
             ->set('content', $content)
-            ->set('page', 'search')
+            ->set('get', $this->request->query())
+            ->set('post', $this->request->post())
         ;
 
         $this->response->body($template);

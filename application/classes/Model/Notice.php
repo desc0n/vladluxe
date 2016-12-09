@@ -357,6 +357,20 @@ class Model_Notice extends Kohana_Model
 		;
 	}
 
+	/**
+	 * @return array
+	 */
+    public function findTopMenuTypes()
+	{
+		return DB::select()
+			->from('notice__type')
+			->where('top_menu', '=', 1)
+			->order_by('id', 'ASC')
+			->execute()
+			->as_array('id', 'name')
+		;
+	}
+
     /**
      * @param array $query
      * @return array
@@ -538,5 +552,26 @@ class Model_Notice extends Kohana_Model
             ->execute()
         ;
     }
+
+    public function sendNoticeQuery($queryData)
+	{
+		$from = 'site@vladluxe.ru';
+		$message = View::factory('mail_message')->set('queryData', $queryData);
+		$bound = "0";
+		$header = "From: $from<$from>\r\n";
+		$header .= "Subject: Запрос на объявление с сайта\n";
+		$header .= "Mime-Version: 1.0\n";
+		$header .= "Content-Type: multipart/mixed; boundary=\"$bound\"";
+		$body = "\n\n--$bound\n";
+		$body .= "Content-type: text/html; charset=\"utf-8\"\n";
+		$body .= "Content-Transfer-Encoding: quoted-printable\n\n";
+		$body .= "$message";
+
+		if (mail('descon@bk.ru', 'Запрос на объявление с сайта', $body, $header)) {
+			return 'success';
+		}
+
+		return 'error';
+	}
 }
 ?>
