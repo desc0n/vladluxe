@@ -48,7 +48,7 @@
                     <img src="/images/logo.png" alt="">
                 </a>
                 <ul class="nav navbar-nav navbar-right header-navbar">
-                    <li <?=($rootPage === 'index' ? 'class="active"' : null);?>>
+                    <li <?=($rootPage === 'index' || empty($rootPage) ? 'class="active"' : null);?>>
                         <a href="/">Главная</a>
                     </li>
                     <li class="dropdown <?=($rootPage === 'search' && (int)Arr::get($get, 'type') !== 7 ? 'active' : null);?>">
