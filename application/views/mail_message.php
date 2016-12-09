@@ -1,5 +1,5 @@
 <h2>Объявление с сайта</h2>
-<table border="0" cellpadding="20">
+<table border="0" cellpadding="10">
   <tr>
     <td>Имя: </td>
     <td><?=Arr::get($queryData, 'customerName');?></td>
@@ -15,7 +15,7 @@
 </table>
 <br />
 <br />
-<table border="0">
+<table border="0" cellpadding="10">
   <tr>
     <td>Тип: </td>
     <td><?=Arr::get($queryData, 'type');?></td>
