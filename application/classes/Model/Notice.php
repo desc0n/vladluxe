@@ -555,7 +555,7 @@ class Model_Notice extends Kohana_Model
 
     public function sendNoticeQuery($queryData)
 	{
-		$from = 'site@vladluxe.ru';
+		$from = 'cw87769@bone012.timeweb.ru';
 		$message = View::factory('mail_message')->set('queryData', $queryData);
 		$bound = "0";
 		$header = "From: $from<$from>\r\n";
