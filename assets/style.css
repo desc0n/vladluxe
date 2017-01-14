@@ -171,13 +171,16 @@ h2{font-size: 25px;}
     width: 400px;
     margin-left: 300px;
 }
-
+.properties .img-responsive {
+    width: 100%;
+}
 @media screen and (min-width: 768px) {
     #myCarousel .carousel-inner .item .carousel-caption {
         margin-left: 50px;
     }
 
     .navbar-inverse .navbar-nav > li > a{font-size: 11px;}
+    .properties .img-responsive {height: 250px;}
 }
 
 @media screen and (min-width: 992px) {
@@ -186,6 +189,7 @@ h2{font-size: 25px;}
     }
 
     .navbar-inverse .navbar-nav > li > a{font-size: 11px;}
+    .properties .img-responsive {height: 250px;}
 }
 
 @media (min-width: 1200px) {
@@ -200,6 +204,7 @@ h2{font-size: 25px;}
     }
 
     .navbar-inverse .navbar-nav > li > a{font-size: 14px;}
+    .properties .img-responsive {height: 155px;}
 }
 
 #myCarousel .carousel-inner .item .carousel-caption h2,
@@ -258,11 +263,6 @@ h2{font-size: 25px;}
 .pagination .active a:hover,
 .pagination .active a:visited {
     color: #fff;
-}
-
-.properties .img-responsive {
-    height: 155px;
-    width: 100%;
 }
 
 .search-result .properties .img-responsive {
