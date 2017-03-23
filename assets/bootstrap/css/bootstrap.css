@@ -6478,7 +6478,7 @@ button.close {
 }
 
 .carousel-indicators li {
-  display: inline-block;
+  display: none;
   width: 10px;
   height: 10px;
   margin: 1px;

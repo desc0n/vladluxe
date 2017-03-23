@@ -9,7 +9,7 @@
 <div class="container">
     <div class="spacer">
         <div class="row">
-            <div class="col-lg-8  col-lg-offset-2">
+            <div class="col-lg-12">
                 <?=Arr::get($pageData, 'content');?>
             </div>
 
