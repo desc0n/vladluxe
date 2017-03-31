@@ -27,8 +27,10 @@
 </head>
 
 <body>
-
-
+<?php
+/** @var Model_Content $contentModel */
+$contentModel = Model::factory('Content');
+?>
 <!-- Header Starts -->
 <div class="navbar-wrapper">
 
@@ -98,15 +100,6 @@
                     </li>
                 </ul>
             </div>
-<!--            <div class="col-lg-3 col-sm-3">-->
-<!--                <h4>Сообщение</h4>-->
-<!--                <p>Получать уведомление о новинках</p>-->
-<!--                <form class="form-inline" role="form">-->
-<!--                    <input type="text" placeholder="E-mail" class="form-control">-->
-<!--                    <button class="btn btn-success" type="button">Отправить</button>-->
-<!--                </form>-->
-<!--            </div>-->
-
             <div class="col-lg-4 col-sm-4">
                 <h4>Мы в соцсетях</h4>
                 <a href="#">
@@ -128,12 +121,18 @@
                 <p>
                     <b>Агенство недвижимости "Люкс"</b>
                     <br>
+                    <?foreach ($contentModel->getContacts(['address']) as $contact){?>
                     <span class="glyphicon glyphicon-map-marker"></span>
-                        Владивосток, ул. Ад. Юмашева, 35/1 <br>
+                        <?=$contact['value'];?> <br>
+                    <?}?>
+                    <?foreach ($contentModel->getContacts(['email']) as $contact){?>
                     <span class="glyphicon glyphicon-envelope"></span>
-                        2903033@mail.ru<br>
+                        <?=$contact['value'];?><br>
+                    <?}?>
+                    <?foreach ($contentModel->getContacts(['phone']) as $contact){?>
                     <span class="glyphicon glyphicon-earphone"></span>
-                        (423) 2-666-156
+                        <?=$contact['value'];?>
+                    <?}?>
                 </p>
             </div>
         </div>

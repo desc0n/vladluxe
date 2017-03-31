@@ -16,7 +16,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
     <script src="/assets/bootstrap/js/bootstrap3-typeahead.js"></script>
-    <script src="/assets/admin/js/scripts.js"></script>
+    <script src="/assets/admin/js/scripts.js?v=2"></script>
     <script src="/assets/admin/js/holder.js"></script>
     <script src="/assets/admin/js/ckeditor/ckeditor.js"></script>
 </head>
@@ -53,6 +53,9 @@
                     </li>
                     <li>
                         <a href="/crm/pages_list"><i class="fa fa-pencil-square-o fa-fw"></i> Редактировать страницу</a>
+                    </li>
+                    <li>
+                        <a href="/crm/contacts"><i class="fa fa-phone fa-fw"></i> Редактировать контакты</a>
                     </li>
                 </ul>
             </div>

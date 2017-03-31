@@ -5,6 +5,16 @@
  */
 class Model_Content extends Kohana_Model
 {
+    private $contactTypes = ['address' => 'Адрес', 'phone' => 'Телефон', 'email' => 'E-mail'];
+
+    /**
+     * @return array
+     */
+    public function getContactTypes()
+    {
+        return $this->contactTypes;
+    }
+
     /**
      * @return View
      */
@@ -195,6 +205,71 @@ class Model_Content extends Kohana_Model
             ->where('name', 'like', "%$query%")
             ->execute()
             ->as_array(null, 'name')
+        ;
+    }
+
+    /**
+     * @param null|array $type
+     * @return array
+     */
+    public function getContacts($type = null)
+    {
+        $query = DB::select()
+            ->from('contacts')
+            ->where('', '', 1)
+        ;
+
+        $query = $type !== null ? $query->and_where('type', 'IN', $type) : $query;
+
+        return $query->execute()->as_array();
+    }
+
+    /**
+     * @param string $type
+     * @param string $value
+     *
+     * @return bool
+     */
+    public function addContact($type, $value)
+    {
+        if (!array_key_exists($type, $this->getContactTypes())) {
+            return false;
+        }
+
+        DB::insert('contacts', ['type', 'value'])
+            ->values([$type, $value])
+            ->execute()
+        ;
+
+        return true;
+    }
+
+    /**
+     * @param array $params
+     */
+    public function updateContacts($params)
+    {
+        $ids = Arr::get($params, 'ids', []);
+        $types = Arr::get($params, 'types', []);
+        $values = Arr::get($params, 'values', []);
+
+        foreach ($ids as $key => $id) {
+            DB::update('contacts')
+                ->set(['type' => $types[$key], 'value' => $values[$key]])
+                ->where('id', '=', $id)
+                ->execute()
+            ;
+        }
+    }
+
+    /**
+     * @param int $id
+     */
+    public function removeContact($id)
+    {
+        DB::delete('contacts')
+            ->where('id', '=', $id)
+            ->execute()
         ;
     }
 }

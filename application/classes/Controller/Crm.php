@@ -233,4 +233,27 @@ class Controller_Crm extends Controller_Base
 
         $this->response->body($template);
     }
+
+    public function action_contacts()
+    {
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $template = $this->getBaseTemplate();
+
+        if (!empty($this->request->post('addContact'))) {
+            $contentModel->addContact($this->request->post('type'), $this->request->post('value'));
+            HTTP::redirect($this->request->referrer());
+        }
+
+        if (!empty($this->request->post('updateContacts'))) {
+            $contentModel->updateContacts($this->request->post());
+            HTTP::redirect($this->request->referrer());
+        }
+
+        $template->content = View::factory('crm/contacts')
+            ->set('contacts', $contentModel->getContacts())
+        ;
+        $this->response->body($template);
+    }
 }

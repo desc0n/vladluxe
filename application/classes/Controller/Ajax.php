@@ -79,4 +79,14 @@ class Controller_Ajax extends Controller
 
         $this->response->body(json_encode(['result' => $result]));
     }
+
+    public function action_remove_contact()
+    {
+        /** @var $contentModel Model_Content */
+        $contentModel = Model::factory('Content');
+
+        $contentModel->removeContact((int)$this->request->post('id'));
+
+        $this->response->body(json_encode(['result' =>'success']));
+    }
 }
