@@ -272,4 +272,38 @@ class Model_Content extends Kohana_Model
             ->execute()
         ;
     }
+
+    /**
+     * @param null|array $type
+     * @return array
+     */
+    public function getSocialNetworks($type = null)
+    {
+        $query = DB::select()
+            ->from('social_networks')
+            ->where('', '', 1)
+        ;
+
+        $query = $type !== null ? $query->and_where('type', '=', $type) : $query;
+        $query = $type !== null ? $query->limit(1) : $query;
+
+        return $query = $type !== null ? $query->execute()->current() : $query->execute()->as_array();
+    }
+
+    /**
+     * @param array $params
+     */
+    public function updateSocialNetworks($params)
+    {
+        $ids = Arr::get($params, 'ids', []);
+        $values = Arr::get($params, 'values', []);
+
+        foreach ($ids as $key => $id) {
+            DB::update('social_networks')
+                ->set(['value' => $values[$key]])
+                ->where('id', '=', $id)
+                ->execute()
+            ;
+        }
+    }
 }

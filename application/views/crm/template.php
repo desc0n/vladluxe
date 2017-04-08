@@ -57,6 +57,9 @@
                     <li>
                         <a href="/crm/contacts"><i class="fa fa-phone fa-fw"></i> Редактировать контакты</a>
                     </li>
+                    <li>
+                        <a href="/crm/social_networks"><i class="fa fa-share-alt fa-fw"></i> Редактировать соцсети</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

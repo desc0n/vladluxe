@@ -102,16 +102,13 @@ $contentModel = Model::factory('Content');
             </div>
             <div class="col-lg-4 col-sm-4">
                 <h4>Мы в соцсетях</h4>
-                <a href="#">
+                <a href="<?=Arr::get($contentModel->getSocialNetworks('facebook'), 'value', '#');?>">
                     <img src="/images/facebook.png" alt="facebook">
                 </a>
-                <a href="#">
+                <a href="<?=Arr::get($contentModel->getSocialNetworks('twitter'), 'value', '#');?>">
                     <img src="/images/twitter.png" alt="twitter">
                 </a>
-                <a href="#">
-                    <img src="/images/linkedin.png" alt="linkedin">
-                </a>
-                <a href="#">
+                <a href="<?=Arr::get($contentModel->getSocialNetworks('instagram'), 'value', '#');?>">
                     <img src="/images/instagram.png" alt="instagram">
                 </a>
             </div>
